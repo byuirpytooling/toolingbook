@@ -1,0 +1,7 @@
+---
+title: "About"
+---
+
+## About this site
+
+This site contains notes and links for our special topics class.
