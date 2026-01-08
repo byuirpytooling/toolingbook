@@ -1,0 +1,58 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This site contains notes and links for our special topics class."
+  },
+  {
+    "objectID": "about.html#about-this-site",
+    "href": "about.html#about-this-site",
+    "title": "About",
+    "section": "",
+    "text": "This site contains notes and links for our special topics class."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "toolingbook",
+    "section": "",
+    "text": "Welcome to toolingbook\nNotes and links for our special topics class.\nThis is a Quarto website. To learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "slides/introduction_w1.html#introduction-to-j.-hathaway",
+    "href": "slides/introduction_w1.html#introduction-to-j.-hathaway",
+    "title": "DS 495 Special Topics: Data Science Tooling (Building Packages)",
+    "section": "Introduction to J. Hathaway",
+    "text": "Introduction to J. Hathaway\n\nHistory before BYU-I (My work at PNNL)\nHistory at BYU-I (Data Science!)\nFamily introduction\nHobbies (Board Games and Theology)"
+  },
+  {
+    "objectID": "slides/introduction_w1.html#introduction-to-the-course",
+    "href": "slides/introduction_w1.html#introduction-to-the-course",
+    "title": "DS 495 Special Topics: Data Science Tooling (Building Packages)",
+    "section": "Introduction to the Course",
+    "text": "Introduction to the Course\nLet’s make this what we want!\n\nProposed projects\nProposed grading\nDiscussion about special topics classes"
+  },
+  {
+    "objectID": "slides/introduction_w1.html#activity-1",
+    "href": "slides/introduction_w1.html#activity-1",
+    "title": "DS 495 Special Topics: Data Science Tooling (Building Packages)",
+    "section": "Activity 1",
+    "text": "Activity 1\nGet into teams of 3 and work on the following definitions\n\nWhat is data analytics?\nWhat is data science?\nWhat is data science tooling?"
+  },
+  {
+    "objectID": "slides/introduction_w1.html#activity-2",
+    "href": "slides/introduction_w1.html#activity-2",
+    "title": "DS 495 Special Topics: Data Science Tooling (Building Packages)",
+    "section": "Activity 2",
+    "text": "Activity 2\nWhat are Python and R packages?\n\nExplore Plotnine and their Github Repository to see how Python packages are structured\nExplore ggplot2 and their Github Repository to see how R packages are structured\n\nQuestions\n\nWhere are the functions located in the package?\nWhere is the documentation?\nHow are their websites built?"
+  },
+  {
+    "objectID": "slides/introduction_w1.html#discussion-1",
+    "href": "slides/introduction_w1.html#discussion-1",
+    "title": "DS 495 Special Topics: Data Science Tooling (Building Packages)",
+    "section": "Discussion 1",
+    "text": "Discussion 1\nWhat packages dow we think will be fun to build?"
+  }
+]

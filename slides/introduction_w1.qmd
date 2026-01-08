@@ -1,0 +1,45 @@
+---
+title: "DS 495 Special Topics: Data Science Tooling (Building Packages)"
+author: "J. Hathaway"
+format: revealjs
+---
+
+## Introduction to J. Hathaway
+
+- History before BYU-I (My work at PNNL)
+- History at BYU-I (Data Science!)
+- Family introduction
+- Hobbies (Board Games and Theology)
+
+## Introduction to the Course
+
+__Let's make this what we want!__
+
+- Proposed projects
+- Proposed grading
+- Discussion about special topics classes
+
+## Activity 1
+
+__Get into teams of 3 and work on the following definitions__
+
+- What is data analytics?
+- What is data science?
+- What is data science tooling?
+
+## Activity 2
+
+__What are Python and R packages?__
+
+- Explore [Plotnine](https://plotnine.org/) and their [Github Repository](https://github.com/has2k1/plotnine) to see how Python packages are structured
+- Explore [ggplot2](https://ggplot2.tidyverse.org/) and their [Github Repository](https://github.com/tidyverse/ggplot2) to see how R packages are structured
+
+__Questions__
+
+1. Where are the functions located in the package?
+2. Where is the documentation?
+3. How are their websites built?
+
+## Discussion 1
+
+__What packages dow we think will be fun to build?__
