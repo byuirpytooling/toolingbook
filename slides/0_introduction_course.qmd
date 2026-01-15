@@ -1,5 +1,5 @@
 ---
-title: "DS 495 Special Topics: Data Science Tooling (Building Packages)"
+title: "0. Intro to Data Science Tooling (Building Packages)"
 author: "J. Hathaway"
 format: revealjs
 ---

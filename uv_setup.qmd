@@ -1,0 +1,2132 @@
+
+# uv Setup
+
+Copied from [ref](https://gist.github.com/jzumwalt/0c4bdbd64d68199cf2e6af1e090038bd#file-the-definitive-guide-to-uv-python-packaging-in-production)
+
+# The Definitive Guide to UV: Python Packaging in Production
+
+> **Document Version**: 1.0 (January 2025)  
+> **UV Version**: 0.5.x (Examples tested with 0.5.0)  
+> **Last Updated**: January 2025  
+> **Status**: UV is under active development - features may change
+
+## Table of Contents
+1. [Introduction and Prerequisites](#introduction-and-prerequisites)
+2. [Quick Start](#quick-start)
+3. [Project Setup and Structure](#project-setup-and-structure)
+4. [Package Metadata Configuration](#package-metadata-configuration)
+5. [Complete UV Command Reference](#complete-uv-command-reference)
+6. [Daily Development Workflow](#daily-development-workflow)
+7. [Automation with Just](#automation-with-just)
+8. [Environment Management](#environment-management)
+9. [Project Lifecycle Management](#project-lifecycle-management)
+10. [Production Deployment](#production-deployment)
+11. [Docker Integration](#docker-integration)
+12. [CI/CD Integration](#cicd-integration)
+13. [Team Adoption and Migration](#team-adoption-and-migration)
+14. [Security Considerations](#security-considerations)
+15. [Performance Tuning](#performance-tuning)
+16. [Troubleshooting Guide](#troubleshooting-guide)
+17. [UV Internals](#uv-internals)
+18. [Ecosystem Comparisons](#ecosystem-comparisons)
+19. [Migration Guides](#migration-guides)
+20. [Appendices](#appendices)
+
+## Introduction and Prerequisites
+
+### Who This Guide Is For
+
+This guide is designed for:
+- Python developers frustrated with packaging complexity
+- Teams looking to modernize their Python workflow
+- DevOps engineers packaging Python applications
+- Anyone shipping Python code to production
+
+### Prerequisites
+
+- Basic Python knowledge (packages, imports, virtual environments)
+- Command line familiarity
+- Git basics
+- Optional: Docker knowledge for deployment sections
+
+### What is UV?
+
+UV is a Python packaging tool written in Rust, designed to be the single tool you need for Python packaging - similar to Rust's cargo or Node's npm. Released in February 2024, UV has revolutionized Python packaging through:
+
+- **Categorical speed improvements**: Operations that took minutes now take milliseconds
+- **Unified tooling**: Replaces pip, pip-tools, pipx, pipenv, pyenv, virtualenv, and more
+- **Automatic Python management**: Downloads and manages Python interpreters
+- **Cross-platform lock files**: Same lock file works on Windows, macOS, and Linux
+- **Zero configuration**: Smart defaults that just work
+
+### Version Compatibility Matrix
+
+| UV Version | Python | Status | Notes |
+|------------|---------|---------|--------|
+| 0.5.x | 3.8-3.13 | Current | Build backend changed from `uv` to `uv_build` |
+| 0.4.x | 3.8-3.13 | Supported | Stable, widely deployed |
+| 0.3.x | 3.8-3.12 | Legacy | Missing key features |
+
+### Important Warnings
+
+⚠️ **UV is under active development**. While stable for production use, APIs and behavior may change between minor versions.
+
+⚠️ **Build isolation issues**: Some packages (notably ML libraries like torch with flash-attention) may require special handling with `--no-build-isolation`.
+
+⚠️ **Not suitable for**: Library development requiring testing across multiple Python versions simultaneously (use tox), or Conda environments.
+
+### UV vs Traditional Tools - Complete Comparison
+
+| Task | Traditional Approach | UV Approach | Time Savings |
+|------|---------------------|-------------|--------------|
+| Install Python | pyenv/asdf/system packages | `uv` (automatic) | 5-30 min → 0 |
+| Create virtualenv | `python -m venv` | `uv sync` (automatic) | 30s → 0 |
+| Install deps | `pip install -r requirements.txt` | `uv sync` | 1-5 min → 2s |
+| Add dependency | Edit file + `pip install` | `uv add package` | 30s → 2s |
+| Lock deps | `pip freeze`/pip-tools | `uv lock` (automatic) | 2-5 min → <1s |
+| Update all deps | Complex pip-tools workflow | `uv lock --upgrade` | 5-10 min → <1s |
+| Run in env | `source venv/bin/activate && cmd` | `uv run cmd` | Manual → Automatic |
+| Install tool | `pipx install` | `uvx tool` | 30s → 2s |
+
+## Quick Start
+
+For those who want to get running immediately:
+
+```bash
+# Install UV (one-time setup)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Method 1: Bootstrap a new project
+uv init myproject
+cd myproject
+uv add fastapi pytest --group dev
+
+# Method 2: Create manually
+mkdir myproject && cd myproject
+```
+
+For manual creation, create `pyproject.toml`:
+```toml
+[project]
+name = "myproject"
+version = "0"
+requires-python = "==3.13.*"
+dependencies = []
+
+[dependency-groups]
+dev = ["pytest", "ruff"]
+
+[build-system]
+# uv_build is the official build backend from the Astral team.
+# While newer than setuptools, it's designed to be simple and fast.
+# Version pinning is crucial for reproducibility.
+requires = ["uv_build>=0.7.15,<0.8.0"]
+build-backend = "uv_build"
+```
+
+```bash
+# UV handles everything automatically
+uv run -m pytest            # Downloads Python, creates venv, installs deps
+uv add requests              # Add dependency
+uv run python                # Start REPL with your project
+uv lock --upgrade            # Update all dependencies
+```
+
+### What Just Happened?
+
+UV automatically:
+- Downloaded Python 3.13 if not present
+- Created a virtual environment in `.venv`
+- Generated a cross-platform lock file (`uv.lock`)
+- Installed all dependencies at locked versions
+
+### First Production Script
+
+Create `src/myproject/app.py`:
+```python
+def main():
+    print("Hello from UV!")
+
+if __name__ == "__main__":
+    main()
+```
+
+Run it:
+```bash
+uv run python -m myproject.app
+```
+
+**Note**: Throughout this guide, we use `uv run -m <module>` for CLI tools like pytest. This is more reliable than `uv run <command>`, especially when using `--with` flags.
+
+## Project Setup and Structure
+
+### Choosing a Project Layout
+
+When setting up a Python application, you have three main choices:
+
+1. **Src Layout** (recommended for applications and libraries)
+2. **Flat Layout** (simpler but with caveats)  
+3. **Monorepo Layout** (multiple related packages)
+
+### Src Layout (Recommended)
+
+```
+hello-svc/
+├── src/                    # Unimportable directory
+│   └── hello_svc/         # Your package
+│       ├── __init__.py    # Empty file marking as package
+│       ├── views.py       # Web views/routes
+│       ├── models.py      # Data models
+│       └── asgi.py        # ASGI entry point
+├── tests/
+│   ├── unit/
+│   │   └── test_models.py
+│   └── integration/
+│       └── test_api.py
+├── pyproject.toml
+├── uv.lock
+├── README.md
+└── .gitignore
+```
+
+**Benefits of src layout:**
+- **Import hygiene**: Can't accidentally import from working directory
+- **Clear boundaries**: Source code is isolated
+- **Test safety**: Tests only see installed code
+- **Tool compatibility**: Works with all Python tools
+
+### Flat Layout
+
+```
+myapp/
+├── myapp/
+│   ├── __init__.py
+│   └── main.py
+├── tests/
+├── pyproject.toml
+└── uv.lock
+```
+
+**When to use:**
+- Quick scripts
+- Simple applications
+- When you understand the import implications
+
+**Caveats:**
+- Can accidentally import from working directory
+- May need PYTHONPATH adjustments
+- Some tools assume src layout
+
+### Monorepo Layout
+
+For organizations managing multiple related packages:
+
+```
+monorepo/
+├── packages/
+│   ├── core/
+│   │   ├── src/company_core/
+│   │   ├── tests/
+│   │   └── pyproject.toml
+│   ├── api/
+│   │   ├── src/company_api/
+│   │   ├── tests/
+│   │   └── pyproject.toml
+│   └── cli/
+│       ├── src/company_cli/
+│       ├── tests/
+│       └── pyproject.toml
+├── pyproject.toml          # Workspace configuration
+└── uv.lock                 # Shared lock file
+```
+
+Workspace root `pyproject.toml`:
+```toml
+[tool.uv]
+workspace = ["packages/*"]
+
+[project]
+name = "company-workspace"
+version = "0"
+requires-python = "==3.13.*"
+```
+
+Core package `packages/core/pyproject.toml`:
+```toml
+[project]
+name = "company-core"
+version = "0"
+dependencies = []
+```
+
+API package that depends on core `packages/api/pyproject.toml`:
+```toml
+[project]
+name = "company-api"
+version = "0"
+dependencies = [
+    "company-core",  # Declare the dependency
+    "fastapi>=0.100",
+]
+
+[tool.uv.sources]
+# Tell UV to find company-core in the workspace
+company-core = { workspace = true }
+```
+
+CLI package that depends on both `packages/cli/pyproject.toml`:
+```toml
+[project]
+name = "company-cli"
+version = "0"
+dependencies = [
+    "company-core",
+    "company-api",
+    "click>=8.0",
+]
+
+[tool.uv.sources]
+# All workspace dependencies must be declared here
+company-core = { workspace = true }
+company-api = { workspace = true }
+```
+
+**Key points about workspace dependencies:**
+1. Dependencies must be listed in `dependencies` array
+2. Workspace packages must also be declared in `[tool.uv.sources]`
+3. Use `{ workspace = true }` to tell UV to find them locally
+4. External dependencies don't need sources entries
+
+### Namespace Packages
+
+For large organizations using namespace packages:
+
+```
+src/
+└── company/
+    ├── __init__.py         # This file can be empty or omitted
+    └── teamname/
+        ├── __init__.py
+        └── module.py
+```
+
+**Important**: For namespace packages:
+- Parent `__init__.py` can be empty or omitted entirely
+- Each team owns their subdirectory
+- Multiple packages can contribute to same namespace
+
+Example structure across multiple packages:
+```
+# Package: company-auth
+src/company/auth/
+
+# Package: company-billing  
+src/company/billing/
+
+# Both importable as:
+# from company.auth import login
+# from company.billing import invoice
+```
+
+### Entry Points Philosophy
+
+Entry points are crucial boundaries between systems. They act as **"leaf modules"** - the terminal nodes of your import graph that are never imported by other modules. This makes them the perfect (and only) place for side-effecting initialization code.
+
+**Key principles:**
+- Entry points are leaf modules (never imported by other code)
+- They bridge between external world and your application
+- They're the ONLY place for side-effects (logging setup, configuration, database connections)
+- They should remain as simple as possible (no business logic)
+- Each entry point represents a different way to run your application
+
+**Standard entry points:**
+
+```python
+# src/myapp/asgi.py - For async web apps (leaf module)
+import logging
+from .app import create_app
+
+# Side effects belong ONLY here
+logging.basicConfig(level=logging.INFO)
+app = create_app()
+
+# src/myapp/wsgi.py - For sync web apps (leaf module)
+import os
+import atexit
+import logging
+from .app import create_app
+
+# All initialization in the leaf module
+logging.basicConfig(level=logging.INFO)
+app, cleanup = create_app()
+atexit.register(cleanup)
+
+# src/myapp/cli.py - For command-line interfaces (leaf module)
+import sys
+import logging
+from .commands import main
+
+if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
+    sys.exit(main())
+
+# src/myapp/worker.py - For job queues (leaf module)
+import logging
+from .tasks import worker
+
+if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
+    worker.run()
+```
+
+**Why this pattern matters:**
+- **Testability**: Tests can import your modules without triggering side effects
+- **Flexibility**: Different entry points can have different configurations
+- **Clarity**: It's obvious where initialization happens
+- **Safety**: No accidental side effects from imports
+
+### File Organization Best Practices
+
+```
+project/
+├── src/package/
+│   ├── __init__.py        # Package marker
+│   ├── api/               # Web endpoints
+│   ├── core/              # Business logic
+│   ├── db/                # Database models
+│   ├── services/          # External integrations
+│   └── utils/             # Shared utilities
+├── tests/
+│   ├── conftest.py        # Pytest configuration
+│   ├── unit/              # Fast, isolated tests
+│   ├── integration/       # Database/API tests
+│   └── e2e/               # Full system tests
+├── scripts/               # Development/deployment scripts
+├── docs/                  # Documentation
+├── .github/               # GitHub Actions
+└── docker/                # Docker configurations
+```
+
+## Package Metadata Configuration
+
+All project metadata goes in `pyproject.toml`. Here's a complete example:
+
+```toml
+[project]
+name = "hello-svc"
+version = "0"  # For applications, version doesn't matter
+requires-python = "==3.13.*"  # Exact version for applications
+dependencies = [
+    "fastapi",
+    "granian",  # Rust-based ASGI server
+    "stamina",  # For retries
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "fastapi[standard]",  # FastAPI with dev server features
+]
+
+[build-system]
+# Version pinning is crucial for reproducibility - avoids unexpected build failures if uv_build has breaking changes
+requires = ["uv_build>=0.7.15,<0.8.0"]
+build-backend = "uv_build"
+```
+
+### Key Configuration Points
+
+1. **Project Name**: Can use dashes or underscores (normalized to dashes internally)
+2. **Version**: Set to "0" for applications that aren't distributed
+3. **Python Version**: Use exact version for applications (`==3.13.*`) - this pins the minor version (preventing automatic upgrades to e.g., 3.14 which might introduce breaking changes) while still allowing security patch updates (3.13.0 → 3.13.1)
+4. **Dependencies**: Only production dependencies in main list
+5. **Dependency Groups**: Development tools go in `[dependency-groups]`
+6. **Build System**: Use `uv_build` (with underscore) as the build backend with proper version constraints
+
+### Dependency Groups vs Extras
+
+- **Dependency Groups** (PEP 735): For development dependencies not part of package
+- **Extras**: Part of package metadata, visible on PyPI
+- Groups named "dev" are automatically installed by UV unless told otherwise
+
+### Bottom-Pinning vs Top-Pinning
+
+UV uses **bottom-pinning** (`>=current_version`) instead of top-pinning (`^current_version`):
+
+```bash
+# UV adds dependencies like this:
+fastapi = ">=0.104.1"  # Bottom-pinned
+
+# NOT like this:
+fastapi = "^0.104.1"   # Top-pinned (blocks major updates)
+```
+
+**Why bottom-pinning is superior:**
+- **Security updates**: You get security fixes even if they're only in major version bumps
+- **Calendar versioning**: Works with projects using date-based versions (e.g., `2024.1.0`)
+- **Resolution speed**: Limits eligible versions, making dependency resolution faster
+- **Lock file safety**: Actual versions are locked in `uv.lock`, so updates are intentional
+
+The lock file provides the stability, while bottom-pinning provides the flexibility.
+
+### 💡 Understanding uv lock vs. uv pip compile
+
+This guide focuses on UV's "project mode," which uses `uv.lock` and is the recommended modern workflow.
+
+- **`uv lock` / `uv sync`**: Works with `pyproject.toml` and the `uv.lock` file. This is the integrated, cross-platform, "all-in-one" solution.
+- **`uv pip compile` / `uv pip sync`**: A powerful replacement for pip-tools. It reads `requirements.in` or `pyproject.toml` and produces a traditional `requirements.txt` file. This is excellent for migrating legacy projects or for teams that want to maintain a `requirements.txt` workflow with UV's speed.
+
+For new projects, stick with the `uv lock` workflow as shown in this guide. The pip interface is primarily a migration tool and compatibility layer.
+
+## Complete UV Command Reference
+
+### Core Project Commands
+
+```bash
+# Project initialization
+uv init                    # Create new project with defaults
+uv init myproject         # Create project with specific name
+uv init --lib             # Create a library project
+uv init --app             # Create an application project
+
+# Environment management
+uv sync                    # Create/update venv from lock file
+uv sync --no-dev          # Skip dev dependencies
+uv sync --inexact         # Don't remove extra packages
+uv sync --no-build-isolation  # For problematic packages
+
+# Running commands
+uv run <command>          # Run in project environment
+uv run -m <module>        # Run module (recommended for CLI tools)
+uv run --with <pkg> <cmd> # Run with extra package (MUST use -m for CLI tools!)
+uv run --env-file .env cmd # Load environment variables
+
+# Dependency management  
+uv add <package>          # Add to dependencies
+uv add --group dev <pkg>  # Add to dev dependencies
+uv add "pkg>=1.0"         # Add with constraint
+uv remove <package>       # Remove dependency
+
+# Lock file management
+uv lock                   # Generate/update lock file
+uv lock --upgrade         # Update all to latest
+uv lock --upgrade-package <pkg>  # Update specific package
+```
+
+### UV Pip Interface (Migration Helper)
+
+```bash
+# Familiar pip commands via UV
+uv pip install <package>   # Install package
+uv pip install -r file.txt # Install from requirements
+uv pip install -e .        # Editable install
+uv pip uninstall <package> # Remove package
+uv pip list               # List installed packages
+uv pip show <package>     # Show package details
+uv pip freeze             # Output requirements format
+uv pip compile pyproject.toml  # Generate requirements.txt
+uv pip sync requirements.txt   # Install exact versions
+```
+
+### Virtual Environment Commands
+
+```bash
+# Direct venv management
+uv venv                   # Create venv in .venv
+uv venv myenv            # Create named venv
+uv venv --python 3.12    # Specific Python version
+uv venv --seed           # Include pip/setuptools
+
+# Python management
+uv python list           # Show available Pythons
+uv python install 3.12   # Install Python version
+uv python pin 3.12       # Set project Python version
+```
+
+### Tool Management (uvx)
+
+```bash
+# Run tools independently
+uvx <tool>               # Run latest version
+uvx --from <pkg> <cmd>   # Package name differs from command
+uvx --with <extra> <tool> # Include extra dependencies
+uv tool run <tool>       # Long form of uvx
+
+# Manage installed tools
+uv tool install <tool>   # Install globally
+uv tool list            # Show installed tools
+uv tool uninstall <tool> # Remove tool
+```
+
+### Environment Variables
+
+```bash
+# Python selection
+UV_PYTHON_PREFERENCE=only-system     # Don't download Python
+UV_PYTHON_PREFERENCE=only-managed    # Only UV-installed Python
+UV_PYTHON_PREFERENCE=system          # Prefer system Python
+
+# Cache control
+UV_CACHE_DIR=/path/to/cache         # Custom cache location
+UV_NO_CACHE=1                       # Disable cache completely
+
+# Network
+UV_INDEX_URL=https://pypi.org/simple  # Custom index
+UV_EXTRA_INDEX_URL=https://...        # Additional index
+UV_TRUSTED_HOST=hostname              # Trust host certificates
+
+# Behavior
+UV_COMPILE_BYTECODE=1               # Compile .pyc files
+UV_CONCURRENT_DOWNLOADS=10          # Parallel downloads
+UV_NATIVE_TLS=1                    # Use native TLS
+
+# Tool configuration
+UV_TOOL_DIR=$HOME/.local/bin       # Tool install directory
+UV_ENV_FILE=.env.production        # Default env file
+```
+
+### Advanced Options
+
+```bash
+# Resolution control
+uv add --resolution lowest         # Use oldest compatible
+uv lock --prerelease allow        # Allow pre-releases
+
+# Platform-specific
+uv lock --python-platform windows  # Lock for specific platform
+uv sync --python-platform linux    # Sync for platform
+
+# Output control
+uv --quiet <command>              # Suppress output
+uv --verbose <command>            # Detailed output
+uv --no-color <command>           # Disable colors
+
+# Workspace commands (monorepos)
+uv sync --workspace               # Sync all workspace members
+uv lock --workspace               # Lock entire workspace
+uv run --package myapp <cmd>      # Run in specific package
+```
+
+### Common Command Patterns
+
+```bash
+# Development workflow
+uv run --with ipdb -m pytest --pdb    # Debug tests (MUST use -m with --with!)
+uv run --with rich python             # REPL with rich (python doesn't need -m)
+uv sync && uv run -m pytest           # Ensure sync before test run
+
+# CI/CD commands
+uv sync --no-dev --no-editable       # Production install
+uv pip compile --generate-hashes      # Secure requirements
+
+# Troubleshooting
+UV_NO_CACHE=1 uv sync                # Force fresh install
+uv cache clean                       # Clear cache
+uv --version                         # Check UV version
+```
+
+### Script Execution
+
+UV supports inline script dependencies:
+
+```python
+#!/usr/bin/env -S uv run
+# /// script
+# requires-python = ">=3.12"
+# dependencies = ["requests", "rich"]
+# ///
+
+import requests
+from rich import print
+
+response = requests.get("https://api.github.com")
+print(response.json())
+```
+
+Make executable:
+```bash
+chmod +x script.py
+./script.py  # UV handles everything
+```
+
+## Daily Development Workflow
+
+### Running Tests
+
+```bash
+# Basic test run
+uv run -m pytest
+
+# With specific test selection
+uv run -m pytest tests/test_e2e.py::test_hello
+
+# With debugger on failure (using module form - see warning below)
+uv run --with pdbpp -m pytest --pdb
+
+# Run specific module (recommended over script)
+uv run -m pytest  # More reliable than uv run pytest
+```
+
+### Important Bug Warning
+
+⚠️ **Critical: The `--with` CLI Entry Point Bug**
+
+When using `--with`, you **must** use the module form (`-m`) for CLI tools:
+
+```bash
+# WRONG: Will likely fail - pytest command not found
+uv run --with pdbpp pytest --pdb
+
+# CORRECT: Always works - uses module execution
+uv run --with pdbpp -m pytest --pdb
+```
+
+**Why this happens**: The `--with` flag creates a temporary hidden virtual environment that doesn't properly install CLI entry points. Using the `-m` flag bypasses this issue by directly executing the module.
+
+**Rule**: Always use `-m` form with `--with` dependencies to avoid frustrating "command not found" errors.
+
+### Development Server
+
+```bash
+# Run FastAPI dev server
+uv run fastapi dev src/hello_svc/asgi.py
+
+# Run production server
+uv run granian --interface asgi src.hello_svc.asgi:app
+```
+
+## Automation with Just
+
+[Just](https://github.com/casey/just) is a command runner (not a build tool) that's perfect for automating UV workflows. It's written in Rust (blazingly fast) and explicitly designed for running commands.
+
+### Why Just Over Make?
+
+- **Cross-platform**: Works identically on Windows/Mac/Linux
+- **Purpose-built**: Designed for running commands, not building artifacts
+- **Better ergonomics**: Easy argument passing, built-in functions
+- **No legacy baggage**: No need for `.PHONY`, weird variable syntax
+
+### Basic Justfile
+
+```just
+# Default recipe shows all available commands
+default:
+    @just --list
+
+# Run tests with optional arguments
+test *args:
+    uv run -m pytest {{args}}
+
+# Run tests with coverage
+cov:
+    @just test --cov=src --cov-report=term-missing
+
+# Note: The above shows a key Just feature - recipes can call other recipes!
+# This is something Make can't do elegantly, requiring complex variable passing
+# or duplicating commands. Just makes composition natural.
+
+# Type checking
+typing:
+    uv run -m mypy src tests
+
+# Linting
+lint:
+    uvx ruff check
+    uvx ruff format --check
+
+# Run all checks (note: typing uses -m form)
+check: lint typing test
+
+# Nuke all temporary files and reinstall from scratch
+# This is your "escape hatch" when things get weird
+fresh:
+    @echo "Cleaning up..."
+    @rm -rf .venv __pycache__ .pytest_cache .coverage .mypy_cache
+    @echo "Reinstalling..."
+    @uv sync
+    @echo "Fresh environment ready!"
+
+# Nuke all temporary files and reinstall from scratch
+# This is your "escape hatch" when things get weird
+fresh:
+    @echo "Cleaning up..."
+    @rm -rf .venv __pycache__ .pytest_cache .coverage .mypy_cache
+    @echo "Reinstalling..."
+    @uv sync
+    @echo "Fresh environment ready!"
+
+# Start development server
+serve:
+    uv run fastapi dev src/hello_svc/asgi.py
+```
+
+### Just Silencing Syntax
+
+The `@` prefix controls output visibility:
+
+```just
+# Normal: prints command, then output
+test:
+    uv run pytest
+
+# Silenced: only shows output
+test:
+    @uv run pytest
+
+# Applied to recipe: silences all commands
+@test:
+    echo "Running tests..."  # This line is hidden
+    uv run pytest           # This line is hidden
+
+# Mix and match
+@test:
+    @echo "Running tests..."  # @ here would show the command!
+    uv run pytest
+```
+
+### Advanced Just Features
+
+#### Private Recipes and Functions
+
+```just
+# Private recipe (not shown in --list)
+_http *args:
+    uvx --from httpie http {{args}}
+
+# Public recipe using private one
+req path="" *args:
+    @just _http "http://localhost:{{env("PORT", "8000")}}/{{path}}" {{args}}
+
+# Cross-platform browser opening
+browser:
+    @python -c "import webbrowser; webbrowser.open('http://localhost:{{env('PORT', '8000')}}')"
+```
+
+#### Environment Variable Support
+
+```just
+# Load .env file automatically
+set dotenv-load
+
+# Define variables with defaults
+port := env("PORT", "8000")
+base_url := "http://localhost:" + port
+
+test *args:
+    uv run {{env("UV_RUN_ARGS", "")}} -m pytest {{args}}
+
+serve:
+    uv run fastapi dev --port {{port}} src/hello_svc/asgi.py
+```
+
+#### Recipe Groups
+
+```just
+[group: "qa"]
+test *args:
+    uv run -m pytest {{args}}
+
+[group: "qa"]
+lint:
+    uvx ruff check
+
+[group: "run"]
+serve:
+    uv run fastapi dev src/hello_svc/asgi.py
+
+[group: "run"]
+worker:
+    uv run python -m myapp.worker
+
+[group: "lifecycle"]
+update:
+    uv lock --upgrade
+
+# Nuke all temporary files and reinstall from scratch
+# This is your "escape hatch" when things get weird
+[group: "lifecycle"]
+fresh:
+    @echo "Cleaning up..."
+    @rm -rf .venv __pycache__ .pytest_cache .coverage .mypy_cache
+    @echo "Reinstalling..."
+    @uv sync
+    @echo "Fresh environment ready!"
+
+# Groups organize the output of `just --list`
+```
+
+### Shell Command Organization
+
+Use comma prefixes to organize custom commands:
+
+```bash
+# In your shell config (.bashrc, .zshrc, etc)
+alias ,t='just test'              # Run tests
+alias ,ts='just test -sw'         # Stepwise test debugging
+alias ,c='just check'             # All quality checks
+alias ,s='just serve'             # Start server
+alias ,u='just update'            # Update dependencies
+alias ,f='just fresh'             # Nuclear reset
+
+# Now tab completion shows only your commands:
+$ ,<TAB>
+,c  ,f  ,s  ,t  ,ts  ,u
+```
+
+This creates a personal command namespace that's easy to discover and doesn't conflict with system commands.
+
+## Environment Management
+
+### Using .env Files
+
+UV supports `.env` files via `--env-file` or `UV_ENV_FILE` environment variable:
+
+```bash
+# .env file
+UV_RUN_ARGS="--with pdbpp"  # Note: Remember to use -m with CLI tools!
+PORT=12345
+```
+
+### Virtual Environment Management
+
+While UV abstracts away virtual environments, you can still use them directly:
+
+```bash
+# Create/update virtual environment
+uv sync
+
+# Sync without removing extra packages
+uv sync --inexact
+
+# Install development dependencies
+uv sync
+
+# Fresh install (recreate everything)
+rm -rf .venv
+uv sync
+```
+
+**⚠️ Critical Trade-off When Manually Activating Virtual Environments:**
+
+When you manually activate a virtual environment (`source .venv/bin/activate`), you lose UV's automatic safety net:
+
+- **With `uv run`**: UV automatically checks and syncs dependencies before every command
+- **With manual activation**: YOU are responsible for running `uv sync` after every lock file change
+
+This means after `git pull`, switching branches, or any operation that might change `uv.lock`, you MUST remember to run `uv sync` manually. Forgetting this step is a common source of "works on my machine" bugs.
+
+### Using direnv for Automatic Activation
+
+[direnv](https://direnv.net/) automatically loads environment when entering directories.
+
+Create `.envrc`:
+```bash
+# Ensure dependencies are synced
+echo "Syncing UV environment..."
+uv sync
+
+# Activate virtual environment
+source .venv/bin/activate
+```
+
+This will:
+1. Ensure virtual environment exists and is up-to-date
+2. Sync any dependency changes automatically
+3. Activate it when entering the directory
+4. Deactivate when leaving
+
+This approach gives you the best of both worlds: manual virtual environment activation WITH automatic dependency syncing.
+
+### Advanced direnv Configuration
+
+```bash
+# .envrc with more features
+# Ensure dependencies are synced
+echo "Syncing UV environment..."
+uv sync
+
+# Activate virtual environment
+source .venv/bin/activate
+
+# Load .env file if it exists
+[[ -f .env ]] && dotenv
+
+# Add project-specific commands to PATH
+PATH_add bin
+```
+
+## Team Adoption and Migration
+
+### Common Resistance Points
+
+Teams may resist UV adoption due to:
+- **Muscle memory**: "I want my pip install"
+- **Virtual environment habits**: Manual activation feels necessary
+- **Fear of new tools**: Python packaging trauma runs deep
+- **IDE concerns**: "Will my editor still work?"
+
+### Gradual Migration Strategy
+
+#### Phase 1: Coexistence
+```bash
+# Keep requirements.txt temporarily
+uv pip compile pyproject.toml -o requirements.txt
+
+# Both workflows work:
+pip install -r requirements.txt  # Old way
+uv sync                         # New way
+```
+
+**Note**: `uv pip compile` is UV's compatibility mode for teams transitioning from pip-tools. The modern `uv lock` workflow is preferred for new projects.
+
+#### Phase 2: Soft Adoption
+- Add UV commands to documentation
+- Create Justfile with familiar names
+- Keep `.venv` in project root (IDE friendly)
+- Show the speed difference in demos
+
+#### Phase 3: Full Migration
+- Remove requirements.txt
+- Standardize on `uv run` for CI/CD
+- Document UV-only workflows
+
+### Onboarding New Developers
+
+Traditional Python onboarding:
+```bash
+# 1. Install Python (somehow)
+# 2. Create virtualenv (remember how?)
+# 3. Activate it (platform specific!)
+# 4. Install dependencies (hope they resolve)
+# 5. Deal with conflicts...
+```
+
+UV onboarding:
+```bash
+# 1. Install UV
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# 2. Run anything
+uv run -m pytest  # Everything else is automatic
+```
+
+### Addressing Specific Concerns
+
+**"I need pip install for debugging"**
+```bash
+# UV provides a pip interface
+uv pip install package
+uv pip list
+uv pip show package
+```
+
+**"My IDE needs a virtualenv"**
+- UV creates `.venv` automatically
+- Same location IDEs expect
+- PyCharm, VSCode, etc. detect it immediately
+
+**"What about our CI/CD?"**
+```yaml
+# GitHub Actions example
+- uses: astral-sh/setup-uv@v1
+- run: uv run -m pytest
+```
+
+### Making the Case for UV
+
+**Performance metrics to share:**
+- Dependency resolution: 30s → 0.5s
+- Lock updates: 2-5 minutes → <1 second
+- New developer setup: 30 minutes → 2 minutes
+- CI/CD runs: Significantly faster
+
+**Risk mitigation:**
+- UV is funded and actively developed
+- Backward compatible with pip standards
+- Easy rollback if needed
+- Already used by major projects
+
+## Common Gotchas and Edge Cases
+
+### The --with Bug
+
+**Problem**: CLI entry points aren't installed with `--with`:
+```bash
+# BROKEN: pytest command not found
+uv run --with pdbpp pytest
+
+# WORKS: Using module form
+uv run --with pdbpp -m pytest
+```
+
+**Rule**: Always use `-m` form with `--with` dependencies. This critical bug occurs because `--with` creates a temporary hidden virtual environment that doesn't properly install CLI entry points.
+
+### Hidden Virtual Environments
+
+UV creates multiple hidden virtual environments:
+- Main project: `.venv`
+- With `--with`: Temporary hidden venv
+- Script runs: Another hidden venv
+
+This is why `--with` dependencies don't appear in `.venv`.
+
+### Understanding UV's Architecture
+
+UV manages multiple virtual environments transparently:
+
+1. **Project venv** (`.venv`): Your main development environment
+2. **Tool venvs**: For `uvx`/`uv tool run` commands  
+3. **Temporary venvs**: For `--with` dependencies
+4. **Script venvs**: For inline script dependencies
+
+This architecture enables:
+- Clean separation of concerns
+- No dependency conflicts
+- Fast, isolated execution
+- Reproducible environments
+
+### Platform-Specific Dependencies
+
+Some packages have platform-specific builds:
+```toml
+# In pyproject.toml
+dependencies = [
+    "pywin32; sys_platform == 'win32'",
+    "pyobjc; sys_platform == 'darwin'",
+]
+```
+
+### Corporate Proxy Issues
+
+```bash
+# Set proxy environment variables
+export HTTP_PROXY=http://proxy.company.com:8080
+export HTTPS_PROXY=http://proxy.company.com:8080
+
+# UV respects standard proxy variables
+uv sync
+```
+
+### When UV Can't Find Python
+
+If UV can't download Python (airgapped environment):
+```bash
+# Point to existing Python
+UV_PYTHON=/usr/local/bin/python3.13 uv sync
+
+# Or install Python first
+apt install python3.13
+```
+
+### Build Dependencies Problems
+
+For packages needing specific build dependencies:
+```bash
+# Disable build isolation if needed
+uv sync --no-build-isolation
+
+# For complex cases (e.g., torch + flash-attention)
+# May need manual intervention
+```
+
+### Git and UV Files
+
+Always commit:
+- `pyproject.toml`
+- `uv.lock`
+
+Never commit:
+- `.venv/`
+- `__pycache__/`
+
+Add to `.gitignore`:
+```gitignore
+.venv/
+__pycache__/
+*.pyc
+.coverage
+.pytest_cache/
+```
+
+## Advanced Tips and Troubleshooting
+
+### Running Multiple Processes
+
+For applications requiring multiple services (web + worker + redis), use [Overmind](https://github.com/DarthSim/overmind):
+
+Create `Procfile.dev`:
+```procfile
+web: just serve
+worker: uv run python -m myapp.worker
+redis: redis-server
+```
+
+```just
+# In Justfile
+dev:
+    overmind start -f Procfile.dev
+
+# Or with specific processes
+dev-web:
+    overmind start -f Procfile.dev web worker
+```
+
+Overmind advantages over Docker Compose for development:
+- Direct access to processes (no container barriers)
+- Faster startup/restart
+- Better log handling
+- Easy to attach debuggers
+
+### Complex Project Examples
+
+#### Web App with Background Workers
+
+```toml
+[project]
+name = "production-app"
+version = "0"
+requires-python = "==3.13.*"
+dependencies = [
+    "django>=5.0",
+    "celery[redis]>=5.3",
+    "psycopg[binary]>=3.1",
+    "gunicorn>=21.0",
+    "sentry-sdk>=1.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest-django",
+    "pytest-cov",
+    "factory-boy",
+    "ipdb",
+]
+
+[build-system]
+requires = ["uv_build>=0.7.15,<0.8.0"]
+build-backend = "uv_build"
+```
+
+```python
+# src/production_app/wsgi.py
+import os
+import atexit
+from django.core.wsgi import get_wsgi_application
+import sentry_sdk
+
+def create_app():
+    # Initialize Sentry
+    sentry_sdk.init(
+        dsn=os.environ.get("SENTRY_DSN"),
+        environment=os.environ.get("ENVIRONMENT", "development"),
+    )
+    
+    # Setup Django
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'production_app.settings')
+    app = get_wsgi_application()
+    
+    # Cleanup function
+    def cleanup():
+        from django.db import connections
+        connections.close_all()
+    
+    return app, cleanup
+
+application, cleanup_func = create_app()
+atexit.register(cleanup_func)
+```
+
+#### Multi-Entry Point Application
+
+```just
+# Justfile for multiple entry points
+[group: "run"]
+web:
+    uv run gunicorn production_app.wsgi:application
+
+[group: "run"]
+worker:
+    uv run celery -A production_app worker -l info
+
+[group: "run"]
+scheduler:
+    uv run celery -A production_app beat -l info
+
+[group: "run"]
+dev:
+    overmind start -f Procfile.dev
+
+# Database operations
+[group: "db"]
+migrate:
+    uv run python -m django migrate
+
+[group: "db"]
+shell:
+    uv run python -m django shell_plus
+```
+
+### Performance Optimization
+
+#### Caching for CI/CD
+
+```yaml
+# GitHub Actions with caching
+- uses: actions/cache@v3
+  with:
+    path: |
+      ~/.cache/uv
+      .venv
+    key: ${{ runner.os }}-uv-${{ hashFiles('uv.lock') }}
+
+- run: uv sync
+- run: uv run -m pytest
+```
+
+#### Parallel Testing
+
+```just
+# Run tests in parallel
+test-fast:
+    uv run -m pytest -n auto
+
+# Add to dev dependencies
+init:
+    uv add --group dev pytest-xdist
+```
+
+### Production Deployment
+
+### Private Package Repositories
+
+UV supports private package indexes for corporate environments:
+
+```toml
+# pyproject.toml
+[project]
+name = "corporate-app"
+version = "0"
+requires-python = "==3.13.*"  # Pin for applications
+dependencies = ["private-package>=1.0"]
+
+[build-system]
+requires = ["uv_build>=0.7.15,<0.8.0"]
+build-backend = "uv_build"
+
+[tool.uv]
+index-url = "https://pypi.company.com/simple"
+extra-index-url = ["https://pypi.org/simple"]
+
+# For authentication
+[tool.uv.sources]
+private-package = { index = "private", version = ">=1.0" }
+
+[[tool.uv.index]]
+name = "private"
+url = "https://pypi.company.com/simple"
+# Authentication via environment variable
+# UV_INDEX_PRIVATE_PASSWORD
+```
+
+Environment setup:
+```bash
+export UV_INDEX_PRIVATE_USERNAME=deploy-token
+export UV_INDEX_PRIVATE_PASSWORD=secret-token
+```
+
+### Production Installation
+
+```bash
+# Minimal production install
+uv sync --no-dev --no-editable
+
+# With hash verification
+uv pip compile --generate-hashes pyproject.toml -o requirements.txt
+uv pip sync requirements.txt --require-hashes
+```
+
+### Deployment Checklist
+
+- [ ] Lock file committed and up-to-date
+- [ ] No dev dependencies in production
+- [ ] Python version pinned exactly
+- [ ] Security scanning integrated
+- [ ] Build isolation handled for ML packages
+- [ ] Private repository authentication configured
+
+## Docker Integration
+
+UV revolutionizes Python Docker builds with:
+- **Optimized layer caching** using `--no-install-project`
+- **No Python base image required** - UV can download Python itself!
+- **Deterministic builds** with lock files
+- **Blazing fast rebuilds** when only code changes
+
+### Development Dockerfile
+
+```dockerfile
+# Development image with hot reload
+FROM python:3.13-slim
+
+# Install UV
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
+
+# Copy project files
+WORKDIR /app
+COPY pyproject.toml uv.lock ./
+
+# Install dependencies (including dev)
+RUN uv sync
+
+# Copy source code
+COPY . .
+
+# Development server with reload
+CMD ["uv", "run", "fastapi", "dev", "--host", "0.0.0.0"]
+```
+
+### Production Dockerfile (Multi-stage)
+
+```dockerfile
+# Build stage for dependencies
+FROM python:3.13-slim AS builder
+
+# Install UV
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
+
+# Copy ONLY dependency definition files
+WORKDIR /app
+COPY pyproject.toml uv.lock ./
+
+# Install dependencies into a layer. This layer only changes
+# when the lock file changes.
+# --no-install-project prevents installing the app itself here.
+RUN uv sync --no-dev --no-editable --no-install-project
+
+# Final image stage
+FROM python:3.13-slim
+
+# Create non-root user
+RUN useradd -m -u 1000 appuser
+
+# Copy the dependency environment from the builder
+COPY --from=builder /app/.venv /app/.venv
+
+# Set PATH to use the venv
+ENV PATH="/app/.venv/bin:$PATH"
+
+# Now copy the application code. This is the most frequently
+# changing layer and should be last.
+WORKDIR /app
+COPY --chown=appuser:appuser src ./src
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"
+
+USER appuser
+
+# Run with production server
+CMD ["gunicorn", "src.myapp.asgi:app", "-k", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8000"]
+```
+
+**Key optimization**: The `--no-install-project` flag creates a more stable dependency layer that only changes when `uv.lock` changes, not when your application code changes. This results in much faster builds during development.
+
+### Optimized Dockerfile (Using UV for everything)
+
+```dockerfile
+FROM ubuntu:24.04
+
+# Install minimal dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install UV
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+ENV PATH="/root/.cargo/bin:$PATH"
+
+# Create app user
+RUN useradd -m -u 1000 appuser
+WORKDIR /app
+
+# Copy project files
+COPY --chown=appuser:appuser pyproject.toml uv.lock ./
+
+# UV will download Python!
+RUN uv sync --no-dev
+
+# Copy application
+COPY --chown=appuser:appuser . .
+
+# Switch to non-root user
+USER appuser
+
+# Run with UV
+CMD ["uv", "run", "gunicorn", "src.myapp.asgi:app", "-k", "uvicorn.workers.UvicornWorker"]
+```
+
+### Minimal Dockerfile (UV Downloads Python!)
+
+Here's the "wow" feature - UV can download and manage Python itself:
+
+```dockerfile
+# No Python base image needed!
+FROM ubuntu:24.04
+
+# Minimal setup
+RUN apt-get update && apt-get install -y curl ca-certificates && rm -rf /var/lib/apt/lists/*
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+ENV PATH="/root/.cargo/bin:$PATH"
+
+WORKDIR /app
+COPY pyproject.toml uv.lock ./
+
+# UV will download Python based on requires-python in pyproject.toml
+# and create the .venv
+RUN uv sync --no-dev
+
+COPY . .
+CMD ["uv", "run", "gunicorn", "src.myapp.asgi:app", "-k", "uvicorn.workers.UvicornWorker"]
+```
+
+**This is revolutionary**: No need to worry about Python base images, versions, or OS-specific Python installations. UV handles it all based on your `requires-python` setting!
+
+### Docker Layer Caching Optimization
+
+```dockerfile
+# Maximize cache hits with proper layer ordering
+FROM python:3.13-slim
+
+# Install UV (rarely changes)
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
+
+# Copy only dependency files first
+WORKDIR /app
+COPY pyproject.toml uv.lock ./
+
+# Install dependencies WITHOUT the project (cached when deps unchanged)
+RUN uv sync --no-dev --no-install-project
+
+# Copy source last (changes frequently)
+COPY src ./src
+
+# Now sync the project itself
+RUN uv sync --no-dev --no-editable
+
+# Build-time optimizations
+RUN UV_COMPILE_BYTECODE=1 python -m compileall src
+
+CMD ["uv", "run", "python", "-m", "myapp"]
+```
+
+**Layer caching best practices**:
+1. Order layers from least to most frequently changing
+2. Use `--no-install-project` to separate dependency installation from project installation
+3. Copy source code as late as possible
+4. Each `RUN` command creates a new layer - combine commands when they change together
+
+### Docker Compose Integration
+
+```yaml
+# docker-compose.yml
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.dev
+      cache_from:
+        - ${REGISTRY}/myapp:cache
+    volumes:
+      - .:/app
+      - /app/.venv  # Don't override venv
+    environment:
+      - DATABASE_URL=postgresql://user:pass@db:5432/myapp
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  worker:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.prod
+    command: uv run celery -A myapp worker
+    environment:
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis
+      - db
+
+  db:
+    image: postgres:16
+    environment:
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_USER=user
+      - POSTGRES_DB=myapp
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+
+volumes:
+  postgres_data:
+```
+
+### Kubernetes Deployment
+
+```yaml
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+      - name: myapp
+        image: myregistry/myapp:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: UV_NO_CACHE
+          value: "1"  # Disable cache in container
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: myapp-secrets
+              key: database-url
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+```
+
+### Container Security Best Practices
+
+1. **Always use non-root user**
+2. **Minimize image size** - Use slim base images
+3. **Scan for vulnerabilities**:
+   ```bash
+   docker scout cves myimage:latest
+   ```
+4. **Sign images**: Use Docker Content Trust
+5. **Use specific versions**: Never use `latest` in production
+6. **Secrets management**: Use environment variables or mounted secrets, never hardcode
+
+### Performance Considerations
+
+```dockerfile
+# Enable bytecode compilation
+ENV UV_COMPILE_BYTECODE=1
+
+# Use BuildKit cache mounts
+# syntax=docker/dockerfile:1
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --no-dev
+
+# Multi-platform builds
+# Build with: docker buildx build --platform linux/amd64,linux/arm64
+```
+
+**Which Dockerfile approach to choose?**
+- **Development**: Use the simple development Dockerfile with hot reload
+- **Production with Python base**: Use the optimized multi-stage build with `--no-install-project`
+- **Minimal/Revolutionary**: Use the Ubuntu-based approach where UV downloads Python - perfect for CI/CD or when you want full control
+
+### Troubleshooting Guide
+
+**Virtual environment issues:**
+```bash
+# Complete reset using Just recipe
+just fresh  # If you have the recipe
+
+# Or manually
+rm -rf .venv __pycache__ .pytest_cache .coverage .mypy_cache
+uv sync
+```
+
+**Lock file conflicts after merge:**
+```bash
+# After git merge conflicts
+git checkout --theirs uv.lock  # Or --ours
+uv lock --upgrade
+```
+
+**Module not found errors:**
+1. Ensure using `uv run` or activated venv
+2. Check `pyproject.toml` has all dependencies
+3. For src layout: verify correct import paths
+4. Run `uv sync` to ensure sync
+
+**Slow first run:**
+- First time: UV downloads Python, creates venv, installs deps
+- Subsequent runs: Sub-second
+- Use `UV_PYTHON_PREFERENCE=only-system` to skip Python download
+
+**Package build failures:**
+```bash
+# For packages with complex build requirements
+uv sync --no-build-isolation
+
+# For specific package issues
+UV_NO_CACHE=1 uv sync  # Force rebuild
+```
+
+**Common gotchas:**
+- Always use `-m` form with CLI tools: `uv run -m pytest`, not `uv run pytest`
+- The `--with` flag requires `-m` form for CLI entry points
+- Check `pyproject.toml` for correct `uv_build` version constraints
+
+### IDE Integration
+
+UV's `.venv` location makes IDE integration automatic:
+
+**VS Code**:
+- Automatically detects `.venv` in project root
+- Python extension uses it immediately
+- No configuration needed
+
+**PyCharm**:
+- Detects `.venv` on project open
+- May prompt to use it as interpreter
+- Works with all PyCharm features
+
+**Other Editors**:
+- Point to `.venv/bin/python` (Unix) or `.venv\Scripts\python.exe` (Windows)
+- UV maintains standard virtualenv structure
+
+**Tip**: When using IDEs, you can still use `uv run -m pytest` in the integrated terminal for consistency, or let the IDE use the `.venv` directly.
+
+### UV Scripts (Advanced Feature)
+
+UV supports inline script dependencies:
+```python
+#!/usr/bin/env -S uv run
+# /// script
+# requires-python = ">=3.12"
+# dependencies = ["requests", "rich"]
+# ///
+
+import requests
+from rich import print
+
+response = requests.get("https://api.github.com")
+print(response.json())
+```
+
+Make executable and run directly - UV handles everything!
+
+## Appendices
+
+### Appendix A: Complete Command Reference
+
+#### Project Commands
+```bash
+uv init [project-name]      # Initialize new project
+uv add <package>            # Add dependency
+uv remove <package>         # Remove dependency
+uv sync                     # Sync environment with lock file
+uv lock                     # Generate/update lock file
+uv run <command>            # Run command in environment
+uv tree                     # Show dependency tree
+```
+
+#### Python Management
+```bash
+uv python list              # List available Pythons
+uv python install <version> # Install Python version
+uv python pin <version>     # Pin project Python version
+uv python find              # Find Python interpreter
+```
+
+#### Tool Management
+```bash
+uvx <tool>                  # Run tool in isolated environment
+uv tool install <tool>      # Install tool globally
+uv tool list               # List installed tools
+uv tool uninstall <tool>   # Remove tool
+uv tool run <tool>         # Long form of uvx
+```
+
+#### pip Compatibility Commands
+```bash
+uv pip install              # Install packages
+uv pip uninstall           # Remove packages
+uv pip list                # List packages
+uv pip show                # Package information
+uv pip freeze              # Export requirements
+uv pip compile             # Generate locked requirements
+uv pip sync                # Sync to requirements file
+uv pip tree                # Dependency tree
+```
+
+#### Cache Management
+```bash
+uv cache clean             # Clear entire cache
+uv cache prune             # Remove unused entries
+uv cache dir               # Show cache directory
+```
+
+### Appendix B: Environment Variables
+
+#### Python Selection
+- `UV_PYTHON`: Path to Python interpreter
+- `UV_PYTHON_PREFERENCE`: `only-system`, `only-managed`, `system`, `managed`
+- `UV_PYTHON_DOWNLOADS`: Enable/disable Python downloads
+
+#### Cache Control
+- `UV_CACHE_DIR`: Custom cache location
+- `UV_NO_CACHE`: Disable caching (1 to enable)
+- `UV_CACHE_KEYS`: Additional cache key components
+
+#### Network Configuration
+- `UV_INDEX_URL`: Primary package index
+- `UV_EXTRA_INDEX_URL`: Additional package indexes
+- `UV_TRUSTED_HOST`: Trusted hosts (comma-separated)
+- `UV_NATIVE_TLS`: Use native TLS implementation
+- `HTTP_PROXY`, `HTTPS_PROXY`: Proxy servers
+- `NO_PROXY`: Proxy exceptions
+
+#### Authentication
+- `UV_INDEX_{name}_USERNAME`: Index-specific username
+- `UV_INDEX_{name}_PASSWORD`: Index-specific password
+- `UV_KEYRING_PROVIDER`: Keyring backend
+
+#### Performance
+- `UV_CONCURRENT_DOWNLOADS`: Parallel downloads (default: 10)
+- `UV_CONCURRENT_BUILDS`: Parallel builds
+- `UV_CONCURRENT_INSTALLS`: Parallel installs
+- `UV_REQUEST_TIMEOUT`: HTTP timeout in seconds
+
+#### Behavior
+- `UV_COMPILE_BYTECODE`: Compile .pyc files
+- `UV_NO_BUILD_ISOLATION`: Disable build isolation
+- `UV_NO_BUILD_ISOLATION_PACKAGE`: Specific packages
+- `UV_SYSTEM_PYTHON`: Allow system Python
+- `UV_BREAK_SYSTEM_PACKAGES`: Override system protection
+
+#### Tool Configuration
+- `UV_TOOL_DIR`: Tool installation directory
+- `UV_TOOL_BIN_DIR`: Tool binary directory
+- `UV_ENV_FILE`: Default .env file location
+
+### Appendix C: Configuration File Reference
+
+```toml
+# pyproject.toml
+[project]
+name = "package-name"
+version = "0.1.0"
+description = "Package description"
+readme = "README.md"
+requires-python = ">=3.11"  # For libraries, use broad constraints
+# requires-python = "==3.13.*"  # For applications, pin minor version
+license = { text = "MIT" }
+authors = [
+    { name = "Author Name", email = "author@example.com" }
+]
+dependencies = [
+    "requests>=2.28",
+    "pydantic>=2.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/org/repo"
+Documentation = "https://docs.example.com"
+Repository = "https://github.com/org/repo.git"
+Issues = "https://github.com/org/repo/issues"
+
+[project.scripts]
+myapp = "myapp.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "mypy>=1.0",
+]
+docs = [
+    "sphinx>=6.0",
+    "furo>=2023.1.1",
+]
+
+[build-system]
+requires = ["uv_build>=0.7.15,<0.8.0"]
+build-backend = "uv_build"
+
+[tool.uv]
+# Custom index
+index-url = "https://pypi.org/simple"
+extra-index-url = ["https://download.pytorch.org/whl/cpu"]
+
+# Development settings
+dev-dependencies = [
+    "ipython>=8.0",
+]
+
+# Compilation settings
+compile-bytecode = true
+
+# Resolution preferences
+resolution = "highest"  # or "lowest"
+
+# Workspace configuration (monorepos)
+workspace = ["packages/*"]
+
+# Source dependencies
+[tool.uv.sources]
+mydep = { git = "https://github.com/org/repo.git", branch = "main" }
+localpack = { path = "../localpack" }
+```
+
+### Appendix D: Troubleshooting Flowchart
+
+```
+Problem: UV command fails
+│
+├─ "No Python interpreter found"
+│  ├─ Run: uv python install 3.x
+│  └─ Or: UV_PYTHON=/path/to/python uv sync
+│
+├─ "Failed to download"
+│  ├─ Check: Internet connection
+│  ├─ Check: Proxy settings (HTTP_PROXY)
+│  └─ Try: UV_REQUEST_TIMEOUT=60 uv sync
+│
+├─ "No solution found"
+│  ├─ Try: uv lock --upgrade
+│  ├─ Check: Conflicting dependencies
+│  └─ Use: uv lock -v for details
+│
+├─ "Hash mismatch"
+│  ├─ Clear: uv cache clean
+│  └─ Retry: UV_NO_CACHE=1 uv sync
+│
+└─ "Build failed"
+   ├─ Try: uv sync --no-build-isolation
+   └─ Check: Build dependencies
+```
+
+### Appendix E: Performance Benchmarks
+
+#### Real-world Project Comparisons
+
+| Project Size | Tool | Cold Install | Cached Install | Lock Update |
+|-------------|------|--------------|----------------|-------------|
+| Small (10 deps) | UV | 2s | 0.5s | 0.3s |
+| | pip | 25s | 15s | N/A |
+| | Poetry | 45s | 30s | 20s |
+| Medium (50 deps) | UV | 8s | 1s | 0.8s |
+| | pip | 90s | 45s | N/A |
+| | Poetry | 180s | 90s | 120s |
+| Large (200 deps) | UV | 25s | 2s | 2s |
+| | pip | 300s | 120s | N/A |
+| | Poetry | 600s | 300s | 480s |
+
+### Appendix F: Quick Reference Card
+
+```bash
+# Daily Development
+uv run -m pytest           # Run tests
+uv run python              # Start REPL
+uv add package             # Add dependency
+uv lock --upgrade          # Update all deps
+uvx ruff check             # Run linter
+
+# Environment Management
+uv sync                   # Sync environment
+uv sync --no-dev         # Production only
+rm -rf .venv && uv sync  # Fresh install
+
+# Debugging
+uv run --with ipdb -m pytest --pdb  # Must use -m with --with!
+uv tree                              # View dependencies
+uv pip list                          # List installed
+
+# CI/CD
+uv sync --no-dev --no-editable
+uv run --no-sync command  # Skip sync check
+
+# Tools
+uvx --from black black .  # Format code
+uvx --with plugins tool   # Tool with extras
+```
+
+### Appendix G: Glossary
+
+**Bottom-pinning**: Version constraint like `>=1.0.0` allowing updates
+
+**Build isolation**: Installing build deps in separate environment
+
+**Cross-platform lock**: Lock file working on all operating systems
+
+**Dependency group**: Optional dependencies not part of package
+
+**Entry point**: Script or module that starts your application
+
+**Lock file**: File containing exact versions of all dependencies
+
+**Monorepo**: Repository containing multiple related packages
+
+**PEP**: Python Enhancement Proposal (standards document)
+
+**Resolution**: Process of finding compatible dependency versions
+
+**Source layout**: Using `src/` directory for package code
+
+**UV**: Unified Python packaging tool written in Rust
+
+**uvx**: Command to run Python tools in isolation without installing them globally (equivalent to `pipx run`)
+
+**Virtual environment**: Isolated Python installation
+
+**Workspace**: Collection of related packages in monorepo
+
+**Leaf Module**: A module at the end of an import graph that is never imported by other application code. It serves as an entry point and is the only appropriate place for side-effecting initialization code (e.g., setting up logging or database connections).
+
+
+
+### Just Stuff
+
+https://github.com/casey/just
+
+to install just to ~/bin:
+
+```
+# create ~/bin
+mkdir -p ~/bin
+
+# download and extract just to ~/bin/just
+curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to ~/bin
+
+# add `~/bin` to the paths that your shell searches for executables
+# this line should be added to your shells initialization file,
+# e.g. `~/.bashrc` or `~/.zshrc`
+export PATH="$PATH:$HOME/bin"
+
+# just should now be executable
+just --help
+```
+
+Sample Justfile
+
+```
+set dotenv-load
+
+PORT := env("PORT", "8000")
+ARGS_TEST := env("_UV_RUN_ARGS_TEST", "")
+ARGS_SERVE := env("_UV_RUN_ARGS_SERVE", "")
+
+
+@_:
+    just --list
+
+
+# Run tests
+[group('qa')]
+test *args:
+    uv run {{ ARGS_TEST }} -m pytest {{ args }}
+
+_cov *args:
+    uv run -m coverage {{ args }}
+
+# Run tests and measure coverage
+[group('qa')]
+@cov:
+    just _cov erase
+    just _cov run -m pytest tests
+    # Ensure ASGI entrypoint is importable.
+    # You can also use coverage to run your CLI entrypoints.
+    just _cov run -m hello_svc.asgi
+    just _cov combine
+    just _cov report
+    just _cov html
+
+# Run linters
+[group('qa')]
+lint:
+    uvx ruff check
+    uvx ruff format
+
+# Check types
+[group('qa')]
+typing:
+    uvx ty check --python .venv src
+
+# Perform all checks
+[group('qa')]
+check-all: lint cov typing
+
+
+# Run development server
+[group('run')]
+serve:
+    uv run {{ ARGS_SERVE }} -m fastapi dev src/hello_svc/asgi.py --port {{ PORT }}
+
+# Send HTTP request to development server
+[group('run')]
+req path="" *args:
+    @just _http {{ args }} http://127.0.0.1:{{ PORT }}/{{ path }}
+
+_http *args:
+    uvx --from httpie http {{ args }}
+
+# Open development server in web browser
+[group('run')]
+browser:
+    uv run -m webbrowser -t http://127.0.0.1:{{ PORT }}
+
+
+# Update dependencies
+[group('lifecycle')]
+update:
+    uv sync --upgrade
+
+# Ensure project virtualenv is up to date
+[group('lifecycle')]
+install:
+    uv sync
+
+# Remove temporary files
+[group('lifecycle')]
+clean:
+    rm -rf .venv .pytest_cache .mypy_cache .ruff_cache .coverage htmlcov
+    find . -type d -name "__pycache__" -exec rm -r {} +
+
+# Recreate project virtualenv from nothing
+[group('lifecycle')]
+fresh: clean install
+```
+

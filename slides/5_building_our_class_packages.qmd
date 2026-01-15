@@ -1,0 +1,34 @@
+---
+title: "5. Intro to Building Packages in R"
+author: "J. Hathaway"
+format: revealjs
+---
+
+## This week's (and next week) plan
+
+- Tuesday: Introduction to __our class__ package (Today)
+- Thursday: Team development time (Hathaway Gone)
+- Tuesday February 3rd: Team development time (Hathaway Gone)
+- Thursday February 5th: Team development time (Hathaway Gone)
+
+## Today's agenda
+
+- Class planning on our class packages
+- Discuss reading assignments and class assignments at the end of class
+- Answer questions on R packages
+- Answer questions on Python package
+- Team time and teacher checkins
+
+## Introduction to our course Python and R package
+
+- [DS 250 Gun Deaths Assignment](https://byuistats.github.io/M335/weekly_projects/cs04_details.html)
+- [US Deaths](https://www.cdc.gov/nchs/data_access/VitalStatsOnline.htm#Mortality_Multiple)
+- [Private Github File Hathaway Built](https://github.com/KSUDS/p2_hathaway/blob/main/_functions.R)
+
+## Class Assignments
+
+ 1. Make sure your environment is setup and that you can publish to GitHub pages
+ 2. Read through The [Getting started section (Chapters 1-5)](https://r-pkgs.org/)
+ 3. Create your own package repository for your personal R package.
+
+ 

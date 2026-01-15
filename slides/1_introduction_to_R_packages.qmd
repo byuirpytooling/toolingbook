@@ -1,0 +1,46 @@
+---
+title: "1. Intro R & Packages"
+author: "J. Hathaway"
+format: revealjs
+---
+
+## Today's agenda
+
+- Introduction to R packages
+- Building our first R package
+
+## This week's plan
+
+- Tuesday: Introduction to R packages and VSCode Setup (Today)
+- Thursday: More on R packages (Thursday)
+
+## Setting up R and VS Code for R Package Development
+
+- VS Code Installation: https://code.visualstudio.com/
+- VS Code R Extension: https://marketplace.visualstudio.com/items?itemName=Ikuyadeu.r
+  - 
+- Windows Users: Install Rtools: https://cran.r-project.org/bin/windows/Rtools/
+- Install Radian for an improved R console experience:
+- Install R Package Dependencies:
+  ```r
+  install.packages(c("devtools", "usethis", "roxygen2", "testthat", "pkgdown", "languageserver", "httpgd"))
+  ```
+
+## Some great quotes from our resources
+
+> Put simply, packages are how you make it as easy as possible to use, maintain, share, and collaborate on Python code with others, whether they be your friends, work colleagues, the world, or your future self!
+> [Packages] save you time. Even if you don’t intend to share your package with others, they help you easily reuse and maintain your code across multiple projects.
+
+## Building or first R package
+
+- [Let's review the usethis package](https://github.com/r-lib/usethis)
+   - What is the purpose of the `usethis` package?
+   - How do they hold true to their purpose based on the functions in the package?
+- [Building a data package thoughts](https://r-pkgs.org/package-within.html#concluding-thoughts)
+- [Exploring the base files and Folders](https://r-pkgs.org/structure.html)
+
+ ## Class Assignments
+
+ 1. Make sure your environment is setup and that you can publish to GitHub pages
+ 2. Read through The [Getting started section (Chapters 1-5)](https://r-pkgs.org/)
+ 3. Create your own package repository for your personal R package.

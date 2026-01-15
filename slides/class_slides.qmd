@@ -1,0 +1,6 @@
+---
+title: "Class Slides"
+---
+
+## These are a work in progress as we explore package development concepts with seniors at BYU-Idaho.
+

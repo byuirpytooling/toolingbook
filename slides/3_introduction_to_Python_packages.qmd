@@ -1,0 +1,39 @@
+---
+title: "3. Introduction Python Development and Packages"
+author: "J. Hathaway"
+format: revealjs
+---
+
+## This week's plan
+
+- Tuesday: Introduction to Python Tooling (Today)
+- Thursday: Introduction to Python packages (Thursday)
+
+## Today's agenda
+
+- Discuss reading assignments and class assignments at the end of class
+- Getting our Python Paradigm straight
+- Introduction to uv, virtual environments, and VS Code setup
+- Introduction to Python packages
+
+## Building or first Python package
+
+- [Let's review the usethis package](https://github.com/r-lib/usethis)
+   - What is the purpose of the `usethis` package?
+   - How do they hold true to their purpose based on the functions in the package?
+- [Building a data package thoughts](https://r-pkgs.org/package-within.html#concluding-thoughts)
+- [Exploring the base files and Folders](https://r-pkgs.org/structure.html)
+
+## Introduction to our course Python and R package
+
+- [DS 250 Gun Deaths Assignment](https://byuistats.github.io/M335/weekly_projects/cs04_details.html)
+- [US Deaths](https://www.cdc.gov/nchs/data_access/VitalStatsOnline.htm#Mortality_Multiple)
+- [Private Github File Hathaway Built](https://github.com/KSUDS/p2_hathaway/blob/main/_functions.R)
+
+## Class Assignments
+
+ 1. Make sure your environment is setup and that you can publish to GitHub pages
+ 2. Read through The [Getting started section (Chapters 1-5)](https://r-pkgs.org/)
+ 3. Create your own package repository for your personal R package.
+
+ 

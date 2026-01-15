@@ -1,9 +1,12 @@
----
-title: "toolingbook"
----
 
-# Welcome to toolingbook
+# Welcome to our Class Notes for our Special Topics in Python and R Tooling
 
-Notes and links for our special topics class.
+Notes and links for our special topics class. If you would like to see more well developed courses for BYU-I's program you can explore [byuidatascience.github.io/](https://byuidatascience.github.io/)
 
-This is a Quarto website. To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+
+## Course Information
+
+1. [VS Code Setup for R](vs_code_setup.qmd)
+2. 
+
+

@@ -1,5 +1,448 @@
 [
   {
+    "objectID": "vs_code_setup.html",
+    "href": "vs_code_setup.html",
+    "title": "VS Code Setup",
+    "section": "",
+    "text": "VS Code Setup"
+  },
+  {
+    "objectID": "slides/2_more_on_R_packages.html#todays-agenda",
+    "href": "slides/2_more_on_R_packages.html#todays-agenda",
+    "title": "2. More on R & Building Packages",
+    "section": "Today’s agenda",
+    "text": "Today’s agenda\n\nIntroduction to R packages\nBuilding our first R package",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "2. More on R & Building Packages"
+    ]
+  },
+  {
+    "objectID": "slides/2_more_on_R_packages.html#this-weeks-plan",
+    "href": "slides/2_more_on_R_packages.html#this-weeks-plan",
+    "title": "2. More on R & Building Packages",
+    "section": "This week’s plan",
+    "text": "This week’s plan\n\nTuesday: Introduction to R packages and VSCode Setup (Today)\nThursday: More on R packages (Thursday)",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "2. More on R & Building Packages"
+    ]
+  },
+  {
+    "objectID": "slides/2_more_on_R_packages.html#introduction-to-our-course-r-package",
+    "href": "slides/2_more_on_R_packages.html#introduction-to-our-course-r-package",
+    "title": "2. More on R & Building Packages",
+    "section": "Introduction to our course r package",
+    "text": "Introduction to our course r package\n\nDS 250 Gun Deaths Assignment\nUS Deaths\nPrivate Github File Hathaway Built",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "2. More on R & Building Packages"
+    ]
+  },
+  {
+    "objectID": "slides/2_more_on_R_packages.html#section",
+    "href": "slides/2_more_on_R_packages.html#section",
+    "title": "2. More on R & Building Packages",
+    "section": "",
+    "text": "## Class Assignments\n\nMake sure your environment is setup and that you can publish to GitHub pages\nRead through The Getting started section (Chapters 1-5)\nCreate your own package repository for your personal R package.",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "2. More on R & Building Packages"
+    ]
+  },
+  {
+    "objectID": "slides/0_introduction_course.html#introduction-to-j.-hathaway",
+    "href": "slides/0_introduction_course.html#introduction-to-j.-hathaway",
+    "title": "0. Intro to Data Science Tooling (Building Packages)",
+    "section": "Introduction to J. Hathaway",
+    "text": "Introduction to J. Hathaway\n\nHistory before BYU-I (My work at PNNL)\nHistory at BYU-I (Data Science!)\nFamily introduction\nHobbies (Board Games and Theology)",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "0. Intro to Data Science Tooling (Building Packages)"
+    ]
+  },
+  {
+    "objectID": "slides/0_introduction_course.html#introduction-to-the-course",
+    "href": "slides/0_introduction_course.html#introduction-to-the-course",
+    "title": "0. Intro to Data Science Tooling (Building Packages)",
+    "section": "Introduction to the Course",
+    "text": "Introduction to the Course\nLet’s make this what we want!\n\nProposed projects\nProposed grading\nDiscussion about special topics classes",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "0. Intro to Data Science Tooling (Building Packages)"
+    ]
+  },
+  {
+    "objectID": "slides/0_introduction_course.html#activity-1",
+    "href": "slides/0_introduction_course.html#activity-1",
+    "title": "0. Intro to Data Science Tooling (Building Packages)",
+    "section": "Activity 1",
+    "text": "Activity 1\nGet into teams of 3 and work on the following definitions\n\nWhat is data analytics?\nWhat is data science?\nWhat is data science tooling?",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "0. Intro to Data Science Tooling (Building Packages)"
+    ]
+  },
+  {
+    "objectID": "slides/0_introduction_course.html#activity-2",
+    "href": "slides/0_introduction_course.html#activity-2",
+    "title": "0. Intro to Data Science Tooling (Building Packages)",
+    "section": "Activity 2",
+    "text": "Activity 2\nWhat are Python and R packages?\n\nExplore Plotnine and their Github Repository to see how Python packages are structured\nExplore ggplot2 and their Github Repository to see how R packages are structured\n\nQuestions\n\nWhere are the functions located in the package?\nWhere is the documentation?\nHow are their websites built?",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "0. Intro to Data Science Tooling (Building Packages)"
+    ]
+  },
+  {
+    "objectID": "slides/0_introduction_course.html#discussion-1",
+    "href": "slides/0_introduction_course.html#discussion-1",
+    "title": "0. Intro to Data Science Tooling (Building Packages)",
+    "section": "Discussion 1",
+    "text": "Discussion 1\nWhat packages dow we think will be fun to build?",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "0. Intro to Data Science Tooling (Building Packages)"
+    ]
+  },
+  {
+    "objectID": "slides/5_building_our_class_packages.html#this-weeks-and-next-week-plan",
+    "href": "slides/5_building_our_class_packages.html#this-weeks-and-next-week-plan",
+    "title": "5. Intro to Building Packages in R",
+    "section": "This week’s (and next week) plan",
+    "text": "This week’s (and next week) plan\n\nTuesday: Introduction to our class package (Today)\nThursday: Team development time (Hathaway Gone)\nTuesday February 3rd: Team development time (Hathaway Gone)\nThursday February 5th: Team development time (Hathaway Gone)",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "5. Intro to Building Packages in R"
+    ]
+  },
+  {
+    "objectID": "slides/5_building_our_class_packages.html#todays-agenda",
+    "href": "slides/5_building_our_class_packages.html#todays-agenda",
+    "title": "5. Intro to Building Packages in R",
+    "section": "Today’s agenda",
+    "text": "Today’s agenda\n\nClass planning on our class packages\nDiscuss reading assignments and class assignments at the end of class\nAnswer questions on R packages\nAnswer questions on Python package\nTeam time and teacher checkins",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "5. Intro to Building Packages in R"
+    ]
+  },
+  {
+    "objectID": "slides/5_building_our_class_packages.html#introduction-to-our-course-python-and-r-package",
+    "href": "slides/5_building_our_class_packages.html#introduction-to-our-course-python-and-r-package",
+    "title": "5. Intro to Building Packages in R",
+    "section": "Introduction to our course Python and R package",
+    "text": "Introduction to our course Python and R package\n\nDS 250 Gun Deaths Assignment\nUS Deaths\nPrivate Github File Hathaway Built",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "5. Intro to Building Packages in R"
+    ]
+  },
+  {
+    "objectID": "slides/5_building_our_class_packages.html#class-assignments",
+    "href": "slides/5_building_our_class_packages.html#class-assignments",
+    "title": "5. Intro to Building Packages in R",
+    "section": "Class Assignments",
+    "text": "Class Assignments\n\nMake sure your environment is setup and that you can publish to GitHub pages\nRead through The Getting started section (Chapters 1-5)\nCreate your own package repository for your personal R package.",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "5. Intro to Building Packages in R"
+    ]
+  },
+  {
+    "objectID": "slides/4_more_on_Python_packages.html#todays-agenda",
+    "href": "slides/4_more_on_Python_packages.html#todays-agenda",
+    "title": "4. More on Python & Building Packages",
+    "section": "Today’s agenda",
+    "text": "Today’s agenda\n\nBuilding our first Python package\nIntroduction to our course Package",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "4. More on Python & Building Packages"
+    ]
+  },
+  {
+    "objectID": "slides/4_more_on_Python_packages.html#this-weeks-plan",
+    "href": "slides/4_more_on_Python_packages.html#this-weeks-plan",
+    "title": "4. More on Python & Building Packages",
+    "section": "This week’s plan",
+    "text": "This week’s plan\n\nTuesday: Introduction to R packages and VSCode Setup (Today)\nThursday: More on R packages (Thursday)",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "4. More on Python & Building Packages"
+    ]
+  },
+  {
+    "objectID": "slides/4_more_on_Python_packages.html#introduction-to-our-course-r-package",
+    "href": "slides/4_more_on_Python_packages.html#introduction-to-our-course-r-package",
+    "title": "4. More on Python & Building Packages",
+    "section": "Introduction to our course r package",
+    "text": "Introduction to our course r package\n\nDS 250 Gun Deaths Assignment\nUS Deaths\nPrivate Github File Hathaway Built",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "4. More on Python & Building Packages"
+    ]
+  },
+  {
+    "objectID": "slides/4_more_on_Python_packages.html#section",
+    "href": "slides/4_more_on_Python_packages.html#section",
+    "title": "4. More on Python & Building Packages",
+    "section": "",
+    "text": "## Class Assignments\n\nMake sure your environment is setup and that you can publish to GitHub pages\nRead through The Getting started section (Chapters 1-5)\nCreate your own package repository for your personal R package.",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "4. More on Python & Building Packages"
+    ]
+  },
+  {
+    "objectID": "uv_setup.html#table-of-contents",
+    "href": "uv_setup.html#table-of-contents",
+    "title": "uv Setup",
+    "section": "Table of Contents",
+    "text": "Table of Contents\n\nIntroduction and Prerequisites\nQuick Start\nProject Setup and Structure\nPackage Metadata Configuration\nComplete UV Command Reference\nDaily Development Workflow\nAutomation with Just\nEnvironment Management\nProject Lifecycle Management\nProduction Deployment\nDocker Integration\nCI/CD Integration\nTeam Adoption and Migration\nSecurity Considerations\nPerformance Tuning\nTroubleshooting Guide\nUV Internals\nEcosystem Comparisons\nMigration Guides\nAppendices"
+  },
+  {
+    "objectID": "uv_setup.html#introduction-and-prerequisites",
+    "href": "uv_setup.html#introduction-and-prerequisites",
+    "title": "uv Setup",
+    "section": "Introduction and Prerequisites",
+    "text": "Introduction and Prerequisites\n\nWho This Guide Is For\nThis guide is designed for: - Python developers frustrated with packaging complexity - Teams looking to modernize their Python workflow - DevOps engineers packaging Python applications - Anyone shipping Python code to production\n\n\nPrerequisites\n\nBasic Python knowledge (packages, imports, virtual environments)\nCommand line familiarity\nGit basics\nOptional: Docker knowledge for deployment sections\n\n\n\nWhat is UV?\nUV is a Python packaging tool written in Rust, designed to be the single tool you need for Python packaging - similar to Rust’s cargo or Node’s npm. Released in February 2024, UV has revolutionized Python packaging through:\n\nCategorical speed improvements: Operations that took minutes now take milliseconds\nUnified tooling: Replaces pip, pip-tools, pipx, pipenv, pyenv, virtualenv, and more\nAutomatic Python management: Downloads and manages Python interpreters\nCross-platform lock files: Same lock file works on Windows, macOS, and Linux\nZero configuration: Smart defaults that just work\n\n\n\nVersion Compatibility Matrix\n\n\n\n\n\n\n\n\n\nUV Version\nPython\nStatus\nNotes\n\n\n\n\n0.5.x\n3.8-3.13\nCurrent\nBuild backend changed from uv to uv_build\n\n\n0.4.x\n3.8-3.13\nSupported\nStable, widely deployed\n\n\n0.3.x\n3.8-3.12\nLegacy\nMissing key features\n\n\n\n\n\nImportant Warnings\n⚠️ UV is under active development. While stable for production use, APIs and behavior may change between minor versions.\n⚠️ Build isolation issues: Some packages (notably ML libraries like torch with flash-attention) may require special handling with --no-build-isolation.\n⚠️ Not suitable for: Library development requiring testing across multiple Python versions simultaneously (use tox), or Conda environments.\n\n\nUV vs Traditional Tools - Complete Comparison\n\n\n\n\n\n\n\n\n\nTask\nTraditional Approach\nUV Approach\nTime Savings\n\n\n\n\nInstall Python\npyenv/asdf/system packages\nuv (automatic)\n5-30 min → 0\n\n\nCreate virtualenv\npython -m venv\nuv sync (automatic)\n30s → 0\n\n\nInstall deps\npip install -r requirements.txt\nuv sync\n1-5 min → 2s\n\n\nAdd dependency\nEdit file + pip install\nuv add package\n30s → 2s\n\n\nLock deps\npip freeze/pip-tools\nuv lock (automatic)\n2-5 min → &lt;1s\n\n\nUpdate all deps\nComplex pip-tools workflow\nuv lock --upgrade\n5-10 min → &lt;1s\n\n\nRun in env\nsource venv/bin/activate && cmd\nuv run cmd\nManual → Automatic\n\n\nInstall tool\npipx install\nuvx tool\n30s → 2s"
+  },
+  {
+    "objectID": "uv_setup.html#quick-start",
+    "href": "uv_setup.html#quick-start",
+    "title": "uv Setup",
+    "section": "Quick Start",
+    "text": "Quick Start\nFor those who want to get running immediately:\n# Install UV (one-time setup)\ncurl -LsSf https://astral.sh/uv/install.sh | sh\n\n# Method 1: Bootstrap a new project\nuv init myproject\ncd myproject\nuv add fastapi pytest --group dev\n\n# Method 2: Create manually\nmkdir myproject && cd myproject\nFor manual creation, create pyproject.toml:\n[project]\nname = \"myproject\"\nversion = \"0\"\nrequires-python = \"==3.13.*\"\ndependencies = []\n\n[dependency-groups]\ndev = [\"pytest\", \"ruff\"]\n\n[build-system]\n# uv_build is the official build backend from the Astral team.\n# While newer than setuptools, it's designed to be simple and fast.\n# Version pinning is crucial for reproducibility.\nrequires = [\"uv_build&gt;=0.7.15,&lt;0.8.0\"]\nbuild-backend = \"uv_build\"\n# UV handles everything automatically\nuv run -m pytest            # Downloads Python, creates venv, installs deps\nuv add requests              # Add dependency\nuv run python                # Start REPL with your project\nuv lock --upgrade            # Update all dependencies\n\nWhat Just Happened?\nUV automatically: - Downloaded Python 3.13 if not present - Created a virtual environment in .venv - Generated a cross-platform lock file (uv.lock) - Installed all dependencies at locked versions\n\n\nFirst Production Script\nCreate src/myproject/app.py:\ndef main():\n    print(\"Hello from UV!\")\n\nif __name__ == \"__main__\":\n    main()\nRun it:\nuv run python -m myproject.app\nNote: Throughout this guide, we use uv run -m &lt;module&gt; for CLI tools like pytest. This is more reliable than uv run &lt;command&gt;, especially when using --with flags."
+  },
+  {
+    "objectID": "uv_setup.html#project-setup-and-structure",
+    "href": "uv_setup.html#project-setup-and-structure",
+    "title": "uv Setup",
+    "section": "Project Setup and Structure",
+    "text": "Project Setup and Structure\n\nChoosing a Project Layout\nWhen setting up a Python application, you have three main choices:\n\nSrc Layout (recommended for applications and libraries)\nFlat Layout (simpler but with caveats)\n\nMonorepo Layout (multiple related packages)\n\n\n\nSrc Layout (Recommended)\nhello-svc/\n├── src/                    # Unimportable directory\n│   └── hello_svc/         # Your package\n│       ├── __init__.py    # Empty file marking as package\n│       ├── views.py       # Web views/routes\n│       ├── models.py      # Data models\n│       └── asgi.py        # ASGI entry point\n├── tests/\n│   ├── unit/\n│   │   └── test_models.py\n│   └── integration/\n│       └── test_api.py\n├── pyproject.toml\n├── uv.lock\n├── README.md\n└── .gitignore\nBenefits of src layout: - Import hygiene: Can’t accidentally import from working directory - Clear boundaries: Source code is isolated - Test safety: Tests only see installed code - Tool compatibility: Works with all Python tools\n\n\nFlat Layout\nmyapp/\n├── myapp/\n│   ├── __init__.py\n│   └── main.py\n├── tests/\n├── pyproject.toml\n└── uv.lock\nWhen to use: - Quick scripts - Simple applications - When you understand the import implications\nCaveats: - Can accidentally import from working directory - May need PYTHONPATH adjustments - Some tools assume src layout\n\n\nMonorepo Layout\nFor organizations managing multiple related packages:\nmonorepo/\n├── packages/\n│   ├── core/\n│   │   ├── src/company_core/\n│   │   ├── tests/\n│   │   └── pyproject.toml\n│   ├── api/\n│   │   ├── src/company_api/\n│   │   ├── tests/\n│   │   └── pyproject.toml\n│   └── cli/\n│       ├── src/company_cli/\n│       ├── tests/\n│       └── pyproject.toml\n├── pyproject.toml          # Workspace configuration\n└── uv.lock                 # Shared lock file\nWorkspace root pyproject.toml:\n[tool.uv]\nworkspace = [\"packages/*\"]\n\n[project]\nname = \"company-workspace\"\nversion = \"0\"\nrequires-python = \"==3.13.*\"\nCore package packages/core/pyproject.toml:\n[project]\nname = \"company-core\"\nversion = \"0\"\ndependencies = []\nAPI package that depends on core packages/api/pyproject.toml:\n[project]\nname = \"company-api\"\nversion = \"0\"\ndependencies = [\n    \"company-core\",  # Declare the dependency\n    \"fastapi&gt;=0.100\",\n]\n\n[tool.uv.sources]\n# Tell UV to find company-core in the workspace\ncompany-core = { workspace = true }\nCLI package that depends on both packages/cli/pyproject.toml:\n[project]\nname = \"company-cli\"\nversion = \"0\"\ndependencies = [\n    \"company-core\",\n    \"company-api\",\n    \"click&gt;=8.0\",\n]\n\n[tool.uv.sources]\n# All workspace dependencies must be declared here\ncompany-core = { workspace = true }\ncompany-api = { workspace = true }\nKey points about workspace dependencies: 1. Dependencies must be listed in dependencies array 2. Workspace packages must also be declared in [tool.uv.sources] 3. Use { workspace = true } to tell UV to find them locally 4. External dependencies don’t need sources entries\n\n\nNamespace Packages\nFor large organizations using namespace packages:\nsrc/\n└── company/\n    ├── __init__.py         # This file can be empty or omitted\n    └── teamname/\n        ├── __init__.py\n        └── module.py\nImportant: For namespace packages: - Parent __init__.py can be empty or omitted entirely - Each team owns their subdirectory - Multiple packages can contribute to same namespace\nExample structure across multiple packages:\n# Package: company-auth\nsrc/company/auth/\n\n# Package: company-billing  \nsrc/company/billing/\n\n# Both importable as:\n# from company.auth import login\n# from company.billing import invoice\n\n\nEntry Points Philosophy\nEntry points are crucial boundaries between systems. They act as “leaf modules” - the terminal nodes of your import graph that are never imported by other modules. This makes them the perfect (and only) place for side-effecting initialization code.\nKey principles: - Entry points are leaf modules (never imported by other code) - They bridge between external world and your application - They’re the ONLY place for side-effects (logging setup, configuration, database connections) - They should remain as simple as possible (no business logic) - Each entry point represents a different way to run your application\nStandard entry points:\n# src/myapp/asgi.py - For async web apps (leaf module)\nimport logging\nfrom .app import create_app\n\n# Side effects belong ONLY here\nlogging.basicConfig(level=logging.INFO)\napp = create_app()\n\n# src/myapp/wsgi.py - For sync web apps (leaf module)\nimport os\nimport atexit\nimport logging\nfrom .app import create_app\n\n# All initialization in the leaf module\nlogging.basicConfig(level=logging.INFO)\napp, cleanup = create_app()\natexit.register(cleanup)\n\n# src/myapp/cli.py - For command-line interfaces (leaf module)\nimport sys\nimport logging\nfrom .commands import main\n\nif __name__ == \"__main__\":\n    logging.basicConfig(level=logging.INFO)\n    sys.exit(main())\n\n# src/myapp/worker.py - For job queues (leaf module)\nimport logging\nfrom .tasks import worker\n\nif __name__ == \"__main__\":\n    logging.basicConfig(level=logging.INFO)\n    worker.run()\nWhy this pattern matters: - Testability: Tests can import your modules without triggering side effects - Flexibility: Different entry points can have different configurations - Clarity: It’s obvious where initialization happens - Safety: No accidental side effects from imports\n\n\nFile Organization Best Practices\nproject/\n├── src/package/\n│   ├── __init__.py        # Package marker\n│   ├── api/               # Web endpoints\n│   ├── core/              # Business logic\n│   ├── db/                # Database models\n│   ├── services/          # External integrations\n│   └── utils/             # Shared utilities\n├── tests/\n│   ├── conftest.py        # Pytest configuration\n│   ├── unit/              # Fast, isolated tests\n│   ├── integration/       # Database/API tests\n│   └── e2e/               # Full system tests\n├── scripts/               # Development/deployment scripts\n├── docs/                  # Documentation\n├── .github/               # GitHub Actions\n└── docker/                # Docker configurations"
+  },
+  {
+    "objectID": "uv_setup.html#package-metadata-configuration",
+    "href": "uv_setup.html#package-metadata-configuration",
+    "title": "uv Setup",
+    "section": "Package Metadata Configuration",
+    "text": "Package Metadata Configuration\nAll project metadata goes in pyproject.toml. Here’s a complete example:\n[project]\nname = \"hello-svc\"\nversion = \"0\"  # For applications, version doesn't matter\nrequires-python = \"==3.13.*\"  # Exact version for applications\ndependencies = [\n    \"fastapi\",\n    \"granian\",  # Rust-based ASGI server\n    \"stamina\",  # For retries\n]\n\n[dependency-groups]\ndev = [\n    \"pytest\",\n    \"fastapi[standard]\",  # FastAPI with dev server features\n]\n\n[build-system]\n# Version pinning is crucial for reproducibility - avoids unexpected build failures if uv_build has breaking changes\nrequires = [\"uv_build&gt;=0.7.15,&lt;0.8.0\"]\nbuild-backend = \"uv_build\"\n\nKey Configuration Points\n\nProject Name: Can use dashes or underscores (normalized to dashes internally)\nVersion: Set to “0” for applications that aren’t distributed\nPython Version: Use exact version for applications (==3.13.*) - this pins the minor version (preventing automatic upgrades to e.g., 3.14 which might introduce breaking changes) while still allowing security patch updates (3.13.0 → 3.13.1)\nDependencies: Only production dependencies in main list\nDependency Groups: Development tools go in [dependency-groups]\nBuild System: Use uv_build (with underscore) as the build backend with proper version constraints\n\n\n\nDependency Groups vs Extras\n\nDependency Groups (PEP 735): For development dependencies not part of package\nExtras: Part of package metadata, visible on PyPI\nGroups named “dev” are automatically installed by UV unless told otherwise\n\n\n\nBottom-Pinning vs Top-Pinning\nUV uses bottom-pinning (&gt;=current_version) instead of top-pinning (^current_version):\n# UV adds dependencies like this:\nfastapi = \"&gt;=0.104.1\"  # Bottom-pinned\n\n# NOT like this:\nfastapi = \"^0.104.1\"   # Top-pinned (blocks major updates)\nWhy bottom-pinning is superior: - Security updates: You get security fixes even if they’re only in major version bumps - Calendar versioning: Works with projects using date-based versions (e.g., 2024.1.0) - Resolution speed: Limits eligible versions, making dependency resolution faster - Lock file safety: Actual versions are locked in uv.lock, so updates are intentional\nThe lock file provides the stability, while bottom-pinning provides the flexibility.\n\n\n💡 Understanding uv lock vs. uv pip compile\nThis guide focuses on UV’s “project mode,” which uses uv.lock and is the recommended modern workflow.\n\nuv lock / uv sync: Works with pyproject.toml and the uv.lock file. This is the integrated, cross-platform, “all-in-one” solution.\nuv pip compile / uv pip sync: A powerful replacement for pip-tools. It reads requirements.in or pyproject.toml and produces a traditional requirements.txt file. This is excellent for migrating legacy projects or for teams that want to maintain a requirements.txt workflow with UV’s speed.\n\nFor new projects, stick with the uv lock workflow as shown in this guide. The pip interface is primarily a migration tool and compatibility layer."
+  },
+  {
+    "objectID": "uv_setup.html#complete-uv-command-reference",
+    "href": "uv_setup.html#complete-uv-command-reference",
+    "title": "uv Setup",
+    "section": "Complete UV Command Reference",
+    "text": "Complete UV Command Reference\n\nCore Project Commands\n# Project initialization\nuv init                    # Create new project with defaults\nuv init myproject         # Create project with specific name\nuv init --lib             # Create a library project\nuv init --app             # Create an application project\n\n# Environment management\nuv sync                    # Create/update venv from lock file\nuv sync --no-dev          # Skip dev dependencies\nuv sync --inexact         # Don't remove extra packages\nuv sync --no-build-isolation  # For problematic packages\n\n# Running commands\nuv run &lt;command&gt;          # Run in project environment\nuv run -m &lt;module&gt;        # Run module (recommended for CLI tools)\nuv run --with &lt;pkg&gt; &lt;cmd&gt; # Run with extra package (MUST use -m for CLI tools!)\nuv run --env-file .env cmd # Load environment variables\n\n# Dependency management  \nuv add &lt;package&gt;          # Add to dependencies\nuv add --group dev &lt;pkg&gt;  # Add to dev dependencies\nuv add \"pkg&gt;=1.0\"         # Add with constraint\nuv remove &lt;package&gt;       # Remove dependency\n\n# Lock file management\nuv lock                   # Generate/update lock file\nuv lock --upgrade         # Update all to latest\nuv lock --upgrade-package &lt;pkg&gt;  # Update specific package\n\n\nUV Pip Interface (Migration Helper)\n# Familiar pip commands via UV\nuv pip install &lt;package&gt;   # Install package\nuv pip install -r file.txt # Install from requirements\nuv pip install -e .        # Editable install\nuv pip uninstall &lt;package&gt; # Remove package\nuv pip list               # List installed packages\nuv pip show &lt;package&gt;     # Show package details\nuv pip freeze             # Output requirements format\nuv pip compile pyproject.toml  # Generate requirements.txt\nuv pip sync requirements.txt   # Install exact versions\n\n\nVirtual Environment Commands\n# Direct venv management\nuv venv                   # Create venv in .venv\nuv venv myenv            # Create named venv\nuv venv --python 3.12    # Specific Python version\nuv venv --seed           # Include pip/setuptools\n\n# Python management\nuv python list           # Show available Pythons\nuv python install 3.12   # Install Python version\nuv python pin 3.12       # Set project Python version\n\n\nTool Management (uvx)\n# Run tools independently\nuvx &lt;tool&gt;               # Run latest version\nuvx --from &lt;pkg&gt; &lt;cmd&gt;   # Package name differs from command\nuvx --with &lt;extra&gt; &lt;tool&gt; # Include extra dependencies\nuv tool run &lt;tool&gt;       # Long form of uvx\n\n# Manage installed tools\nuv tool install &lt;tool&gt;   # Install globally\nuv tool list            # Show installed tools\nuv tool uninstall &lt;tool&gt; # Remove tool\n\n\nEnvironment Variables\n# Python selection\nUV_PYTHON_PREFERENCE=only-system     # Don't download Python\nUV_PYTHON_PREFERENCE=only-managed    # Only UV-installed Python\nUV_PYTHON_PREFERENCE=system          # Prefer system Python\n\n# Cache control\nUV_CACHE_DIR=/path/to/cache         # Custom cache location\nUV_NO_CACHE=1                       # Disable cache completely\n\n# Network\nUV_INDEX_URL=https://pypi.org/simple  # Custom index\nUV_EXTRA_INDEX_URL=https://...        # Additional index\nUV_TRUSTED_HOST=hostname              # Trust host certificates\n\n# Behavior\nUV_COMPILE_BYTECODE=1               # Compile .pyc files\nUV_CONCURRENT_DOWNLOADS=10          # Parallel downloads\nUV_NATIVE_TLS=1                    # Use native TLS\n\n# Tool configuration\nUV_TOOL_DIR=$HOME/.local/bin       # Tool install directory\nUV_ENV_FILE=.env.production        # Default env file\n\n\nAdvanced Options\n# Resolution control\nuv add --resolution lowest         # Use oldest compatible\nuv lock --prerelease allow        # Allow pre-releases\n\n# Platform-specific\nuv lock --python-platform windows  # Lock for specific platform\nuv sync --python-platform linux    # Sync for platform\n\n# Output control\nuv --quiet &lt;command&gt;              # Suppress output\nuv --verbose &lt;command&gt;            # Detailed output\nuv --no-color &lt;command&gt;           # Disable colors\n\n# Workspace commands (monorepos)\nuv sync --workspace               # Sync all workspace members\nuv lock --workspace               # Lock entire workspace\nuv run --package myapp &lt;cmd&gt;      # Run in specific package\n\n\nCommon Command Patterns\n# Development workflow\nuv run --with ipdb -m pytest --pdb    # Debug tests (MUST use -m with --with!)\nuv run --with rich python             # REPL with rich (python doesn't need -m)\nuv sync && uv run -m pytest           # Ensure sync before test run\n\n# CI/CD commands\nuv sync --no-dev --no-editable       # Production install\nuv pip compile --generate-hashes      # Secure requirements\n\n# Troubleshooting\nUV_NO_CACHE=1 uv sync                # Force fresh install\nuv cache clean                       # Clear cache\nuv --version                         # Check UV version\n\n\nScript Execution\nUV supports inline script dependencies:\n#!/usr/bin/env -S uv run\n# /// script\n# requires-python = \"&gt;=3.12\"\n# dependencies = [\"requests\", \"rich\"]\n# ///\n\nimport requests\nfrom rich import print\n\nresponse = requests.get(\"https://api.github.com\")\nprint(response.json())\nMake executable:\nchmod +x script.py\n./script.py  # UV handles everything"
+  },
+  {
+    "objectID": "uv_setup.html#daily-development-workflow",
+    "href": "uv_setup.html#daily-development-workflow",
+    "title": "uv Setup",
+    "section": "Daily Development Workflow",
+    "text": "Daily Development Workflow\n\nRunning Tests\n# Basic test run\nuv run -m pytest\n\n# With specific test selection\nuv run -m pytest tests/test_e2e.py::test_hello\n\n# With debugger on failure (using module form - see warning below)\nuv run --with pdbpp -m pytest --pdb\n\n# Run specific module (recommended over script)\nuv run -m pytest  # More reliable than uv run pytest\n\n\nImportant Bug Warning\n⚠️ Critical: The --with CLI Entry Point Bug\nWhen using --with, you must use the module form (-m) for CLI tools:\n# WRONG: Will likely fail - pytest command not found\nuv run --with pdbpp pytest --pdb\n\n# CORRECT: Always works - uses module execution\nuv run --with pdbpp -m pytest --pdb\nWhy this happens: The --with flag creates a temporary hidden virtual environment that doesn’t properly install CLI entry points. Using the -m flag bypasses this issue by directly executing the module.\nRule: Always use -m form with --with dependencies to avoid frustrating “command not found” errors.\n\n\nDevelopment Server\n# Run FastAPI dev server\nuv run fastapi dev src/hello_svc/asgi.py\n\n# Run production server\nuv run granian --interface asgi src.hello_svc.asgi:app"
+  },
+  {
+    "objectID": "uv_setup.html#automation-with-just",
+    "href": "uv_setup.html#automation-with-just",
+    "title": "uv Setup",
+    "section": "Automation with Just",
+    "text": "Automation with Just\nJust is a command runner (not a build tool) that’s perfect for automating UV workflows. It’s written in Rust (blazingly fast) and explicitly designed for running commands.\n\nWhy Just Over Make?\n\nCross-platform: Works identically on Windows/Mac/Linux\nPurpose-built: Designed for running commands, not building artifacts\nBetter ergonomics: Easy argument passing, built-in functions\nNo legacy baggage: No need for .PHONY, weird variable syntax\n\n\n\nBasic Justfile\n# Default recipe shows all available commands\ndefault:\n    @just --list\n\n# Run tests with optional arguments\ntest *args:\n    uv run -m pytest {{args}}\n\n# Run tests with coverage\ncov:\n    @just test --cov=src --cov-report=term-missing\n\n# Note: The above shows a key Just feature - recipes can call other recipes!\n# This is something Make can't do elegantly, requiring complex variable passing\n# or duplicating commands. Just makes composition natural.\n\n# Type checking\ntyping:\n    uv run -m mypy src tests\n\n# Linting\nlint:\n    uvx ruff check\n    uvx ruff format --check\n\n# Run all checks (note: typing uses -m form)\ncheck: lint typing test\n\n# Nuke all temporary files and reinstall from scratch\n# This is your \"escape hatch\" when things get weird\nfresh:\n    @echo \"Cleaning up...\"\n    @rm -rf .venv __pycache__ .pytest_cache .coverage .mypy_cache\n    @echo \"Reinstalling...\"\n    @uv sync\n    @echo \"Fresh environment ready!\"\n\n# Nuke all temporary files and reinstall from scratch\n# This is your \"escape hatch\" when things get weird\nfresh:\n    @echo \"Cleaning up...\"\n    @rm -rf .venv __pycache__ .pytest_cache .coverage .mypy_cache\n    @echo \"Reinstalling...\"\n    @uv sync\n    @echo \"Fresh environment ready!\"\n\n# Start development server\nserve:\n    uv run fastapi dev src/hello_svc/asgi.py\n\n\nJust Silencing Syntax\nThe @ prefix controls output visibility:\n# Normal: prints command, then output\ntest:\n    uv run pytest\n\n# Silenced: only shows output\ntest:\n    @uv run pytest\n\n# Applied to recipe: silences all commands\n@test:\n    echo \"Running tests...\"  # This line is hidden\n    uv run pytest           # This line is hidden\n\n# Mix and match\n@test:\n    @echo \"Running tests...\"  # @ here would show the command!\n    uv run pytest\n\n\nAdvanced Just Features\n\nPrivate Recipes and Functions\n# Private recipe (not shown in --list)\n_http *args:\n    uvx --from httpie http {{args}}\n\n# Public recipe using private one\nreq path=\"\" *args:\n    @just _http \"http://localhost:{{env(\"PORT\", \"8000\")}}/{{path}}\" {{args}}\n\n# Cross-platform browser opening\nbrowser:\n    @python -c \"import webbrowser; webbrowser.open('http://localhost:{{env('PORT', '8000')}}')\"\n\n\nEnvironment Variable Support\n# Load .env file automatically\nset dotenv-load\n\n# Define variables with defaults\nport := env(\"PORT\", \"8000\")\nbase_url := \"http://localhost:\" + port\n\ntest *args:\n    uv run {{env(\"UV_RUN_ARGS\", \"\")}} -m pytest {{args}}\n\nserve:\n    uv run fastapi dev --port {{port}} src/hello_svc/asgi.py\n\n\nRecipe Groups\n[group: \"qa\"]\ntest *args:\n    uv run -m pytest {{args}}\n\n[group: \"qa\"]\nlint:\n    uvx ruff check\n\n[group: \"run\"]\nserve:\n    uv run fastapi dev src/hello_svc/asgi.py\n\n[group: \"run\"]\nworker:\n    uv run python -m myapp.worker\n\n[group: \"lifecycle\"]\nupdate:\n    uv lock --upgrade\n\n# Nuke all temporary files and reinstall from scratch\n# This is your \"escape hatch\" when things get weird\n[group: \"lifecycle\"]\nfresh:\n    @echo \"Cleaning up...\"\n    @rm -rf .venv __pycache__ .pytest_cache .coverage .mypy_cache\n    @echo \"Reinstalling...\"\n    @uv sync\n    @echo \"Fresh environment ready!\"\n\n# Groups organize the output of `just --list`\n\n\n\nShell Command Organization\nUse comma prefixes to organize custom commands:\n# In your shell config (.bashrc, .zshrc, etc)\nalias ,t='just test'              # Run tests\nalias ,ts='just test -sw'         # Stepwise test debugging\nalias ,c='just check'             # All quality checks\nalias ,s='just serve'             # Start server\nalias ,u='just update'            # Update dependencies\nalias ,f='just fresh'             # Nuclear reset\n\n# Now tab completion shows only your commands:\n$ ,&lt;TAB&gt;\n,c  ,f  ,s  ,t  ,ts  ,u\nThis creates a personal command namespace that’s easy to discover and doesn’t conflict with system commands."
+  },
+  {
+    "objectID": "uv_setup.html#environment-management",
+    "href": "uv_setup.html#environment-management",
+    "title": "uv Setup",
+    "section": "Environment Management",
+    "text": "Environment Management\n\nUsing .env Files\nUV supports .env files via --env-file or UV_ENV_FILE environment variable:\n# .env file\nUV_RUN_ARGS=\"--with pdbpp\"  # Note: Remember to use -m with CLI tools!\nPORT=12345\n\n\nVirtual Environment Management\nWhile UV abstracts away virtual environments, you can still use them directly:\n# Create/update virtual environment\nuv sync\n\n# Sync without removing extra packages\nuv sync --inexact\n\n# Install development dependencies\nuv sync\n\n# Fresh install (recreate everything)\nrm -rf .venv\nuv sync\n⚠️ Critical Trade-off When Manually Activating Virtual Environments:\nWhen you manually activate a virtual environment (source .venv/bin/activate), you lose UV’s automatic safety net:\n\nWith uv run: UV automatically checks and syncs dependencies before every command\nWith manual activation: YOU are responsible for running uv sync after every lock file change\n\nThis means after git pull, switching branches, or any operation that might change uv.lock, you MUST remember to run uv sync manually. Forgetting this step is a common source of “works on my machine” bugs.\n\n\nUsing direnv for Automatic Activation\ndirenv automatically loads environment when entering directories.\nCreate .envrc:\n# Ensure dependencies are synced\necho \"Syncing UV environment...\"\nuv sync\n\n# Activate virtual environment\nsource .venv/bin/activate\nThis will: 1. Ensure virtual environment exists and is up-to-date 2. Sync any dependency changes automatically 3. Activate it when entering the directory 4. Deactivate when leaving\nThis approach gives you the best of both worlds: manual virtual environment activation WITH automatic dependency syncing.\n\n\nAdvanced direnv Configuration\n# .envrc with more features\n# Ensure dependencies are synced\necho \"Syncing UV environment...\"\nuv sync\n\n# Activate virtual environment\nsource .venv/bin/activate\n\n# Load .env file if it exists\n[[ -f .env ]] && dotenv\n\n# Add project-specific commands to PATH\nPATH_add bin"
+  },
+  {
+    "objectID": "uv_setup.html#team-adoption-and-migration",
+    "href": "uv_setup.html#team-adoption-and-migration",
+    "title": "uv Setup",
+    "section": "Team Adoption and Migration",
+    "text": "Team Adoption and Migration\n\nCommon Resistance Points\nTeams may resist UV adoption due to: - Muscle memory: “I want my pip install” - Virtual environment habits: Manual activation feels necessary - Fear of new tools: Python packaging trauma runs deep - IDE concerns: “Will my editor still work?”\n\n\nGradual Migration Strategy\n\nPhase 1: Coexistence\n# Keep requirements.txt temporarily\nuv pip compile pyproject.toml -o requirements.txt\n\n# Both workflows work:\npip install -r requirements.txt  # Old way\nuv sync                         # New way\nNote: uv pip compile is UV’s compatibility mode for teams transitioning from pip-tools. The modern uv lock workflow is preferred for new projects.\n\n\nPhase 2: Soft Adoption\n\nAdd UV commands to documentation\nCreate Justfile with familiar names\nKeep .venv in project root (IDE friendly)\nShow the speed difference in demos\n\n\n\nPhase 3: Full Migration\n\nRemove requirements.txt\nStandardize on uv run for CI/CD\nDocument UV-only workflows\n\n\n\n\nOnboarding New Developers\nTraditional Python onboarding:\n# 1. Install Python (somehow)\n# 2. Create virtualenv (remember how?)\n# 3. Activate it (platform specific!)\n# 4. Install dependencies (hope they resolve)\n# 5. Deal with conflicts...\nUV onboarding:\n# 1. Install UV\ncurl -LsSf https://astral.sh/uv/install.sh | sh\n\n# 2. Run anything\nuv run -m pytest  # Everything else is automatic\n\n\nAddressing Specific Concerns\n“I need pip install for debugging”\n# UV provides a pip interface\nuv pip install package\nuv pip list\nuv pip show package\n“My IDE needs a virtualenv” - UV creates .venv automatically - Same location IDEs expect - PyCharm, VSCode, etc. detect it immediately\n“What about our CI/CD?”\n# GitHub Actions example\n- uses: astral-sh/setup-uv@v1\n- run: uv run -m pytest\n\n\nMaking the Case for UV\nPerformance metrics to share: - Dependency resolution: 30s → 0.5s - Lock updates: 2-5 minutes → &lt;1 second - New developer setup: 30 minutes → 2 minutes - CI/CD runs: Significantly faster\nRisk mitigation: - UV is funded and actively developed - Backward compatible with pip standards - Easy rollback if needed - Already used by major projects"
+  },
+  {
+    "objectID": "uv_setup.html#common-gotchas-and-edge-cases",
+    "href": "uv_setup.html#common-gotchas-and-edge-cases",
+    "title": "uv Setup",
+    "section": "Common Gotchas and Edge Cases",
+    "text": "Common Gotchas and Edge Cases\n\nThe –with Bug\nProblem: CLI entry points aren’t installed with --with:\n# BROKEN: pytest command not found\nuv run --with pdbpp pytest\n\n# WORKS: Using module form\nuv run --with pdbpp -m pytest\nRule: Always use -m form with --with dependencies. This critical bug occurs because --with creates a temporary hidden virtual environment that doesn’t properly install CLI entry points.\n\n\nHidden Virtual Environments\nUV creates multiple hidden virtual environments: - Main project: .venv - With --with: Temporary hidden venv - Script runs: Another hidden venv\nThis is why --with dependencies don’t appear in .venv.\n\n\nUnderstanding UV’s Architecture\nUV manages multiple virtual environments transparently:\n\nProject venv (.venv): Your main development environment\nTool venvs: For uvx/uv tool run commands\n\nTemporary venvs: For --with dependencies\nScript venvs: For inline script dependencies\n\nThis architecture enables: - Clean separation of concerns - No dependency conflicts - Fast, isolated execution - Reproducible environments\n\n\nPlatform-Specific Dependencies\nSome packages have platform-specific builds:\n# In pyproject.toml\ndependencies = [\n    \"pywin32; sys_platform == 'win32'\",\n    \"pyobjc; sys_platform == 'darwin'\",\n]\n\n\nCorporate Proxy Issues\n# Set proxy environment variables\nexport HTTP_PROXY=http://proxy.company.com:8080\nexport HTTPS_PROXY=http://proxy.company.com:8080\n\n# UV respects standard proxy variables\nuv sync\n\n\nWhen UV Can’t Find Python\nIf UV can’t download Python (airgapped environment):\n# Point to existing Python\nUV_PYTHON=/usr/local/bin/python3.13 uv sync\n\n# Or install Python first\napt install python3.13\n\n\nBuild Dependencies Problems\nFor packages needing specific build dependencies:\n# Disable build isolation if needed\nuv sync --no-build-isolation\n\n# For complex cases (e.g., torch + flash-attention)\n# May need manual intervention\n\n\nGit and UV Files\nAlways commit: - pyproject.toml - uv.lock\nNever commit: - .venv/ - __pycache__/\nAdd to .gitignore:\n.venv/\n__pycache__/\n*.pyc\n.coverage\n.pytest_cache/"
+  },
+  {
+    "objectID": "uv_setup.html#advanced-tips-and-troubleshooting",
+    "href": "uv_setup.html#advanced-tips-and-troubleshooting",
+    "title": "uv Setup",
+    "section": "Advanced Tips and Troubleshooting",
+    "text": "Advanced Tips and Troubleshooting\n\nRunning Multiple Processes\nFor applications requiring multiple services (web + worker + redis), use Overmind:\nCreate Procfile.dev:\nweb: just serve\nworker: uv run python -m myapp.worker\nredis: redis-server\n# In Justfile\ndev:\n    overmind start -f Procfile.dev\n\n# Or with specific processes\ndev-web:\n    overmind start -f Procfile.dev web worker\nOvermind advantages over Docker Compose for development: - Direct access to processes (no container barriers) - Faster startup/restart - Better log handling - Easy to attach debuggers\n\n\nComplex Project Examples\n\nWeb App with Background Workers\n[project]\nname = \"production-app\"\nversion = \"0\"\nrequires-python = \"==3.13.*\"\ndependencies = [\n    \"django&gt;=5.0\",\n    \"celery[redis]&gt;=5.3\",\n    \"psycopg[binary]&gt;=3.1\",\n    \"gunicorn&gt;=21.0\",\n    \"sentry-sdk&gt;=1.0\",\n]\n\n[dependency-groups]\ndev = [\n    \"pytest-django\",\n    \"pytest-cov\",\n    \"factory-boy\",\n    \"ipdb\",\n]\n\n[build-system]\nrequires = [\"uv_build&gt;=0.7.15,&lt;0.8.0\"]\nbuild-backend = \"uv_build\"\n# src/production_app/wsgi.py\nimport os\nimport atexit\nfrom django.core.wsgi import get_wsgi_application\nimport sentry_sdk\n\ndef create_app():\n    # Initialize Sentry\n    sentry_sdk.init(\n        dsn=os.environ.get(\"SENTRY_DSN\"),\n        environment=os.environ.get(\"ENVIRONMENT\", \"development\"),\n    )\n    \n    # Setup Django\n    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'production_app.settings')\n    app = get_wsgi_application()\n    \n    # Cleanup function\n    def cleanup():\n        from django.db import connections\n        connections.close_all()\n    \n    return app, cleanup\n\napplication, cleanup_func = create_app()\natexit.register(cleanup_func)\n\n\nMulti-Entry Point Application\n# Justfile for multiple entry points\n[group: \"run\"]\nweb:\n    uv run gunicorn production_app.wsgi:application\n\n[group: \"run\"]\nworker:\n    uv run celery -A production_app worker -l info\n\n[group: \"run\"]\nscheduler:\n    uv run celery -A production_app beat -l info\n\n[group: \"run\"]\ndev:\n    overmind start -f Procfile.dev\n\n# Database operations\n[group: \"db\"]\nmigrate:\n    uv run python -m django migrate\n\n[group: \"db\"]\nshell:\n    uv run python -m django shell_plus\n\n\n\nPerformance Optimization\n\nCaching for CI/CD\n# GitHub Actions with caching\n- uses: actions/cache@v3\n  with:\n    path: |\n      ~/.cache/uv\n      .venv\n    key: ${{ runner.os }}-uv-${{ hashFiles('uv.lock') }}\n\n- run: uv sync\n- run: uv run -m pytest\n\n\nParallel Testing\n# Run tests in parallel\ntest-fast:\n    uv run -m pytest -n auto\n\n# Add to dev dependencies\ninit:\n    uv add --group dev pytest-xdist\n\n\n\nProduction Deployment\n\n\nPrivate Package Repositories\nUV supports private package indexes for corporate environments:\n# pyproject.toml\n[project]\nname = \"corporate-app\"\nversion = \"0\"\nrequires-python = \"==3.13.*\"  # Pin for applications\ndependencies = [\"private-package&gt;=1.0\"]\n\n[build-system]\nrequires = [\"uv_build&gt;=0.7.15,&lt;0.8.0\"]\nbuild-backend = \"uv_build\"\n\n[tool.uv]\nindex-url = \"https://pypi.company.com/simple\"\nextra-index-url = [\"https://pypi.org/simple\"]\n\n# For authentication\n[tool.uv.sources]\nprivate-package = { index = \"private\", version = \"&gt;=1.0\" }\n\n[[tool.uv.index]]\nname = \"private\"\nurl = \"https://pypi.company.com/simple\"\n# Authentication via environment variable\n# UV_INDEX_PRIVATE_PASSWORD\nEnvironment setup:\nexport UV_INDEX_PRIVATE_USERNAME=deploy-token\nexport UV_INDEX_PRIVATE_PASSWORD=secret-token\n\n\nProduction Installation\n# Minimal production install\nuv sync --no-dev --no-editable\n\n# With hash verification\nuv pip compile --generate-hashes pyproject.toml -o requirements.txt\nuv pip sync requirements.txt --require-hashes\n\n\nDeployment Checklist\n\nLock file committed and up-to-date\nNo dev dependencies in production\nPython version pinned exactly\nSecurity scanning integrated\nBuild isolation handled for ML packages\nPrivate repository authentication configured"
+  },
+  {
+    "objectID": "uv_setup.html#docker-integration",
+    "href": "uv_setup.html#docker-integration",
+    "title": "uv Setup",
+    "section": "Docker Integration",
+    "text": "Docker Integration\nUV revolutionizes Python Docker builds with: - Optimized layer caching using --no-install-project - No Python base image required - UV can download Python itself! - Deterministic builds with lock files - Blazing fast rebuilds when only code changes\n\nDevelopment Dockerfile\n# Development image with hot reload\nFROM python:3.13-slim\n\n# Install UV\nCOPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv\n\n# Copy project files\nWORKDIR /app\nCOPY pyproject.toml uv.lock ./\n\n# Install dependencies (including dev)\nRUN uv sync\n\n# Copy source code\nCOPY . .\n\n# Development server with reload\nCMD [\"uv\", \"run\", \"fastapi\", \"dev\", \"--host\", \"0.0.0.0\"]\n\n\nProduction Dockerfile (Multi-stage)\n# Build stage for dependencies\nFROM python:3.13-slim AS builder\n\n# Install UV\nCOPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv\n\n# Copy ONLY dependency definition files\nWORKDIR /app\nCOPY pyproject.toml uv.lock ./\n\n# Install dependencies into a layer. This layer only changes\n# when the lock file changes.\n# --no-install-project prevents installing the app itself here.\nRUN uv sync --no-dev --no-editable --no-install-project\n\n# Final image stage\nFROM python:3.13-slim\n\n# Create non-root user\nRUN useradd -m -u 1000 appuser\n\n# Copy the dependency environment from the builder\nCOPY --from=builder /app/.venv /app/.venv\n\n# Set PATH to use the venv\nENV PATH=\"/app/.venv/bin:$PATH\"\n\n# Now copy the application code. This is the most frequently\n# changing layer and should be last.\nWORKDIR /app\nCOPY --chown=appuser:appuser src ./src\n\n# Health check\nHEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \\\n  CMD python -c \"import urllib.request; urllib.request.urlopen('http://localhost:8000/health')\"\n\nUSER appuser\n\n# Run with production server\nCMD [\"gunicorn\", \"src.myapp.asgi:app\", \"-k\", \"uvicorn.workers.UvicornWorker\", \"--bind\", \"0.0.0.0:8000\"]\nKey optimization: The --no-install-project flag creates a more stable dependency layer that only changes when uv.lock changes, not when your application code changes. This results in much faster builds during development.\n\n\nOptimized Dockerfile (Using UV for everything)\nFROM ubuntu:24.04\n\n# Install minimal dependencies\nRUN apt-get update && apt-get install -y \\\n    curl \\\n    ca-certificates \\\n    && rm -rf /var/lib/apt/lists/*\n\n# Install UV\nRUN curl -LsSf https://astral.sh/uv/install.sh | sh\nENV PATH=\"/root/.cargo/bin:$PATH\"\n\n# Create app user\nRUN useradd -m -u 1000 appuser\nWORKDIR /app\n\n# Copy project files\nCOPY --chown=appuser:appuser pyproject.toml uv.lock ./\n\n# UV will download Python!\nRUN uv sync --no-dev\n\n# Copy application\nCOPY --chown=appuser:appuser . .\n\n# Switch to non-root user\nUSER appuser\n\n# Run with UV\nCMD [\"uv\", \"run\", \"gunicorn\", \"src.myapp.asgi:app\", \"-k\", \"uvicorn.workers.UvicornWorker\"]\n\n\nMinimal Dockerfile (UV Downloads Python!)\nHere’s the “wow” feature - UV can download and manage Python itself:\n# No Python base image needed!\nFROM ubuntu:24.04\n\n# Minimal setup\nRUN apt-get update && apt-get install -y curl ca-certificates && rm -rf /var/lib/apt/lists/*\nRUN curl -LsSf https://astral.sh/uv/install.sh | sh\nENV PATH=\"/root/.cargo/bin:$PATH\"\n\nWORKDIR /app\nCOPY pyproject.toml uv.lock ./\n\n# UV will download Python based on requires-python in pyproject.toml\n# and create the .venv\nRUN uv sync --no-dev\n\nCOPY . .\nCMD [\"uv\", \"run\", \"gunicorn\", \"src.myapp.asgi:app\", \"-k\", \"uvicorn.workers.UvicornWorker\"]\nThis is revolutionary: No need to worry about Python base images, versions, or OS-specific Python installations. UV handles it all based on your requires-python setting!\n\n\nDocker Layer Caching Optimization\n# Maximize cache hits with proper layer ordering\nFROM python:3.13-slim\n\n# Install UV (rarely changes)\nCOPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv\n\n# Copy only dependency files first\nWORKDIR /app\nCOPY pyproject.toml uv.lock ./\n\n# Install dependencies WITHOUT the project (cached when deps unchanged)\nRUN uv sync --no-dev --no-install-project\n\n# Copy source last (changes frequently)\nCOPY src ./src\n\n# Now sync the project itself\nRUN uv sync --no-dev --no-editable\n\n# Build-time optimizations\nRUN UV_COMPILE_BYTECODE=1 python -m compileall src\n\nCMD [\"uv\", \"run\", \"python\", \"-m\", \"myapp\"]\nLayer caching best practices: 1. Order layers from least to most frequently changing 2. Use --no-install-project to separate dependency installation from project installation 3. Copy source code as late as possible 4. Each RUN command creates a new layer - combine commands when they change together\n\n\nDocker Compose Integration\n# docker-compose.yml\nversion: '3.8'\n\nservices:\n  web:\n    build:\n      context: .\n      dockerfile: docker/Dockerfile.dev\n      cache_from:\n        - ${REGISTRY}/myapp:cache\n    volumes:\n      - .:/app\n      - /app/.venv  # Don't override venv\n    environment:\n      - DATABASE_URL=postgresql://user:pass@db:5432/myapp\n    ports:\n      - \"8000:8000\"\n    depends_on:\n      - db\n\n  worker:\n    build:\n      context: .\n      dockerfile: docker/Dockerfile.prod\n    command: uv run celery -A myapp worker\n    environment:\n      - REDIS_URL=redis://redis:6379\n    depends_on:\n      - redis\n      - db\n\n  db:\n    image: postgres:16\n    environment:\n      - POSTGRES_PASSWORD=pass\n      - POSTGRES_USER=user\n      - POSTGRES_DB=myapp\n    volumes:\n      - postgres_data:/var/lib/postgresql/data\n\n  redis:\n    image: redis:7-alpine\n\nvolumes:\n  postgres_data:\n\n\nKubernetes Deployment\n# deployment.yaml\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: myapp\nspec:\n  replicas: 3\n  selector:\n    matchLabels:\n      app: myapp\n  template:\n    metadata:\n      labels:\n        app: myapp\n    spec:\n      securityContext:\n        runAsNonRoot: true\n        runAsUser: 1000\n        fsGroup: 1000\n      containers:\n      - name: myapp\n        image: myregistry/myapp:latest\n        ports:\n        - containerPort: 8000\n        env:\n        - name: UV_NO_CACHE\n          value: \"1\"  # Disable cache in container\n        - name: DATABASE_URL\n          valueFrom:\n            secretKeyRef:\n              name: myapp-secrets\n              key: database-url\n        resources:\n          requests:\n            memory: \"256Mi\"\n            cpu: \"100m\"\n          limits:\n            memory: \"512Mi\"\n            cpu: \"500m\"\n        livenessProbe:\n          httpGet:\n            path: /health\n            port: 8000\n          initialDelaySeconds: 30\n          periodSeconds: 10\n        readinessProbe:\n          httpGet:\n            path: /ready\n            port: 8000\n          initialDelaySeconds: 5\n          periodSeconds: 5\n\n\nContainer Security Best Practices\n\nAlways use non-root user\nMinimize image size - Use slim base images\nScan for vulnerabilities:\ndocker scout cves myimage:latest\nSign images: Use Docker Content Trust\nUse specific versions: Never use latest in production\nSecrets management: Use environment variables or mounted secrets, never hardcode\n\n\n\nPerformance Considerations\n# Enable bytecode compilation\nENV UV_COMPILE_BYTECODE=1\n\n# Use BuildKit cache mounts\n# syntax=docker/dockerfile:1\nRUN --mount=type=cache,target=/root/.cache/uv \\\n    uv sync --no-dev\n\n# Multi-platform builds\n# Build with: docker buildx build --platform linux/amd64,linux/arm64\nWhich Dockerfile approach to choose? - Development: Use the simple development Dockerfile with hot reload - Production with Python base: Use the optimized multi-stage build with --no-install-project - Minimal/Revolutionary: Use the Ubuntu-based approach where UV downloads Python - perfect for CI/CD or when you want full control\n\n\nTroubleshooting Guide\nVirtual environment issues:\n# Complete reset using Just recipe\njust fresh  # If you have the recipe\n\n# Or manually\nrm -rf .venv __pycache__ .pytest_cache .coverage .mypy_cache\nuv sync\nLock file conflicts after merge:\n# After git merge conflicts\ngit checkout --theirs uv.lock  # Or --ours\nuv lock --upgrade\nModule not found errors: 1. Ensure using uv run or activated venv 2. Check pyproject.toml has all dependencies 3. For src layout: verify correct import paths 4. Run uv sync to ensure sync\nSlow first run: - First time: UV downloads Python, creates venv, installs deps - Subsequent runs: Sub-second - Use UV_PYTHON_PREFERENCE=only-system to skip Python download\nPackage build failures:\n# For packages with complex build requirements\nuv sync --no-build-isolation\n\n# For specific package issues\nUV_NO_CACHE=1 uv sync  # Force rebuild\nCommon gotchas: - Always use -m form with CLI tools: uv run -m pytest, not uv run pytest - The --with flag requires -m form for CLI entry points - Check pyproject.toml for correct uv_build version constraints\n\n\nIDE Integration\nUV’s .venv location makes IDE integration automatic:\nVS Code: - Automatically detects .venv in project root - Python extension uses it immediately - No configuration needed\nPyCharm: - Detects .venv on project open - May prompt to use it as interpreter - Works with all PyCharm features\nOther Editors: - Point to .venv/bin/python (Unix) or .venv\\Scripts\\python.exe (Windows) - UV maintains standard virtualenv structure\nTip: When using IDEs, you can still use uv run -m pytest in the integrated terminal for consistency, or let the IDE use the .venv directly.\n\n\nUV Scripts (Advanced Feature)\nUV supports inline script dependencies:\n#!/usr/bin/env -S uv run\n# /// script\n# requires-python = \"&gt;=3.12\"\n# dependencies = [\"requests\", \"rich\"]\n# ///\n\nimport requests\nfrom rich import print\n\nresponse = requests.get(\"https://api.github.com\")\nprint(response.json())\nMake executable and run directly - UV handles everything!"
+  },
+  {
+    "objectID": "uv_setup.html#appendices",
+    "href": "uv_setup.html#appendices",
+    "title": "uv Setup",
+    "section": "Appendices",
+    "text": "Appendices\n\nAppendix A: Complete Command Reference\n\nProject Commands\nuv init [project-name]      # Initialize new project\nuv add &lt;package&gt;            # Add dependency\nuv remove &lt;package&gt;         # Remove dependency\nuv sync                     # Sync environment with lock file\nuv lock                     # Generate/update lock file\nuv run &lt;command&gt;            # Run command in environment\nuv tree                     # Show dependency tree\n\n\nPython Management\nuv python list              # List available Pythons\nuv python install &lt;version&gt; # Install Python version\nuv python pin &lt;version&gt;     # Pin project Python version\nuv python find              # Find Python interpreter\n\n\nTool Management\nuvx &lt;tool&gt;                  # Run tool in isolated environment\nuv tool install &lt;tool&gt;      # Install tool globally\nuv tool list               # List installed tools\nuv tool uninstall &lt;tool&gt;   # Remove tool\nuv tool run &lt;tool&gt;         # Long form of uvx\n\n\npip Compatibility Commands\nuv pip install              # Install packages\nuv pip uninstall           # Remove packages\nuv pip list                # List packages\nuv pip show                # Package information\nuv pip freeze              # Export requirements\nuv pip compile             # Generate locked requirements\nuv pip sync                # Sync to requirements file\nuv pip tree                # Dependency tree\n\n\nCache Management\nuv cache clean             # Clear entire cache\nuv cache prune             # Remove unused entries\nuv cache dir               # Show cache directory\n\n\n\nAppendix B: Environment Variables\n\nPython Selection\n\nUV_PYTHON: Path to Python interpreter\nUV_PYTHON_PREFERENCE: only-system, only-managed, system, managed\nUV_PYTHON_DOWNLOADS: Enable/disable Python downloads\n\n\n\nCache Control\n\nUV_CACHE_DIR: Custom cache location\nUV_NO_CACHE: Disable caching (1 to enable)\nUV_CACHE_KEYS: Additional cache key components\n\n\n\nNetwork Configuration\n\nUV_INDEX_URL: Primary package index\nUV_EXTRA_INDEX_URL: Additional package indexes\nUV_TRUSTED_HOST: Trusted hosts (comma-separated)\nUV_NATIVE_TLS: Use native TLS implementation\nHTTP_PROXY, HTTPS_PROXY: Proxy servers\nNO_PROXY: Proxy exceptions\n\n\n\nAuthentication\n\nUV_INDEX_{name}_USERNAME: Index-specific username\nUV_INDEX_{name}_PASSWORD: Index-specific password\nUV_KEYRING_PROVIDER: Keyring backend\n\n\n\nPerformance\n\nUV_CONCURRENT_DOWNLOADS: Parallel downloads (default: 10)\nUV_CONCURRENT_BUILDS: Parallel builds\nUV_CONCURRENT_INSTALLS: Parallel installs\nUV_REQUEST_TIMEOUT: HTTP timeout in seconds\n\n\n\nBehavior\n\nUV_COMPILE_BYTECODE: Compile .pyc files\nUV_NO_BUILD_ISOLATION: Disable build isolation\nUV_NO_BUILD_ISOLATION_PACKAGE: Specific packages\nUV_SYSTEM_PYTHON: Allow system Python\nUV_BREAK_SYSTEM_PACKAGES: Override system protection\n\n\n\nTool Configuration\n\nUV_TOOL_DIR: Tool installation directory\nUV_TOOL_BIN_DIR: Tool binary directory\nUV_ENV_FILE: Default .env file location\n\n\n\n\nAppendix C: Configuration File Reference\n# pyproject.toml\n[project]\nname = \"package-name\"\nversion = \"0.1.0\"\ndescription = \"Package description\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.11\"  # For libraries, use broad constraints\n# requires-python = \"==3.13.*\"  # For applications, pin minor version\nlicense = { text = \"MIT\" }\nauthors = [\n    { name = \"Author Name\", email = \"author@example.com\" }\n]\ndependencies = [\n    \"requests&gt;=2.28\",\n    \"pydantic&gt;=2.0\",\n]\n\n[project.urls]\nHomepage = \"https://github.com/org/repo\"\nDocumentation = \"https://docs.example.com\"\nRepository = \"https://github.com/org/repo.git\"\nIssues = \"https://github.com/org/repo/issues\"\n\n[project.scripts]\nmyapp = \"myapp.cli:main\"\n\n[dependency-groups]\ndev = [\n    \"pytest&gt;=7.0\",\n    \"pytest-cov&gt;=4.0\",\n    \"mypy&gt;=1.0\",\n]\ndocs = [\n    \"sphinx&gt;=6.0\",\n    \"furo&gt;=2023.1.1\",\n]\n\n[build-system]\nrequires = [\"uv_build&gt;=0.7.15,&lt;0.8.0\"]\nbuild-backend = \"uv_build\"\n\n[tool.uv]\n# Custom index\nindex-url = \"https://pypi.org/simple\"\nextra-index-url = [\"https://download.pytorch.org/whl/cpu\"]\n\n# Development settings\ndev-dependencies = [\n    \"ipython&gt;=8.0\",\n]\n\n# Compilation settings\ncompile-bytecode = true\n\n# Resolution preferences\nresolution = \"highest\"  # or \"lowest\"\n\n# Workspace configuration (monorepos)\nworkspace = [\"packages/*\"]\n\n# Source dependencies\n[tool.uv.sources]\nmydep = { git = \"https://github.com/org/repo.git\", branch = \"main\" }\nlocalpack = { path = \"../localpack\" }\n\n\nAppendix D: Troubleshooting Flowchart\nProblem: UV command fails\n│\n├─ \"No Python interpreter found\"\n│  ├─ Run: uv python install 3.x\n│  └─ Or: UV_PYTHON=/path/to/python uv sync\n│\n├─ \"Failed to download\"\n│  ├─ Check: Internet connection\n│  ├─ Check: Proxy settings (HTTP_PROXY)\n│  └─ Try: UV_REQUEST_TIMEOUT=60 uv sync\n│\n├─ \"No solution found\"\n│  ├─ Try: uv lock --upgrade\n│  ├─ Check: Conflicting dependencies\n│  └─ Use: uv lock -v for details\n│\n├─ \"Hash mismatch\"\n│  ├─ Clear: uv cache clean\n│  └─ Retry: UV_NO_CACHE=1 uv sync\n│\n└─ \"Build failed\"\n   ├─ Try: uv sync --no-build-isolation\n   └─ Check: Build dependencies\n\n\nAppendix E: Performance Benchmarks\n\nReal-world Project Comparisons\n\n\n\nProject Size\nTool\nCold Install\nCached Install\nLock Update\n\n\n\n\nSmall (10 deps)\nUV\n2s\n0.5s\n0.3s\n\n\n\npip\n25s\n15s\nN/A\n\n\n\nPoetry\n45s\n30s\n20s\n\n\nMedium (50 deps)\nUV\n8s\n1s\n0.8s\n\n\n\npip\n90s\n45s\nN/A\n\n\n\nPoetry\n180s\n90s\n120s\n\n\nLarge (200 deps)\nUV\n25s\n2s\n2s\n\n\n\npip\n300s\n120s\nN/A\n\n\n\nPoetry\n600s\n300s\n480s\n\n\n\n\n\n\nAppendix F: Quick Reference Card\n# Daily Development\nuv run -m pytest           # Run tests\nuv run python              # Start REPL\nuv add package             # Add dependency\nuv lock --upgrade          # Update all deps\nuvx ruff check             # Run linter\n\n# Environment Management\nuv sync                   # Sync environment\nuv sync --no-dev         # Production only\nrm -rf .venv && uv sync  # Fresh install\n\n# Debugging\nuv run --with ipdb -m pytest --pdb  # Must use -m with --with!\nuv tree                              # View dependencies\nuv pip list                          # List installed\n\n# CI/CD\nuv sync --no-dev --no-editable\nuv run --no-sync command  # Skip sync check\n\n# Tools\nuvx --from black black .  # Format code\nuvx --with plugins tool   # Tool with extras\n\n\nAppendix G: Glossary\nBottom-pinning: Version constraint like &gt;=1.0.0 allowing updates\nBuild isolation: Installing build deps in separate environment\nCross-platform lock: Lock file working on all operating systems\nDependency group: Optional dependencies not part of package\nEntry point: Script or module that starts your application\nLock file: File containing exact versions of all dependencies\nMonorepo: Repository containing multiple related packages\nPEP: Python Enhancement Proposal (standards document)\nResolution: Process of finding compatible dependency versions\nSource layout: Using src/ directory for package code\nUV: Unified Python packaging tool written in Rust\nuvx: Command to run Python tools in isolation without installing them globally (equivalent to pipx run)\nVirtual environment: Isolated Python installation\nWorkspace: Collection of related packages in monorepo\nLeaf Module: A module at the end of an import graph that is never imported by other application code. It serves as an entry point and is the only appropriate place for side-effecting initialization code (e.g., setting up logging or database connections).\n\n\nJust Stuff\nhttps://github.com/casey/just\nto install just to ~/bin:\n# create ~/bin\nmkdir -p ~/bin\n\n# download and extract just to ~/bin/just\ncurl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to ~/bin\n\n# add `~/bin` to the paths that your shell searches for executables\n# this line should be added to your shells initialization file,\n# e.g. `~/.bashrc` or `~/.zshrc`\nexport PATH=\"$PATH:$HOME/bin\"\n\n# just should now be executable\njust --help\nSample Justfile\nset dotenv-load\n\nPORT := env(\"PORT\", \"8000\")\nARGS_TEST := env(\"_UV_RUN_ARGS_TEST\", \"\")\nARGS_SERVE := env(\"_UV_RUN_ARGS_SERVE\", \"\")\n\n\n@_:\n    just --list\n\n\n# Run tests\n[group('qa')]\ntest *args:\n    uv run {{ ARGS_TEST }} -m pytest {{ args }}\n\n_cov *args:\n    uv run -m coverage {{ args }}\n\n# Run tests and measure coverage\n[group('qa')]\n@cov:\n    just _cov erase\n    just _cov run -m pytest tests\n    # Ensure ASGI entrypoint is importable.\n    # You can also use coverage to run your CLI entrypoints.\n    just _cov run -m hello_svc.asgi\n    just _cov combine\n    just _cov report\n    just _cov html\n\n# Run linters\n[group('qa')]\nlint:\n    uvx ruff check\n    uvx ruff format\n\n# Check types\n[group('qa')]\ntyping:\n    uvx ty check --python .venv src\n\n# Perform all checks\n[group('qa')]\ncheck-all: lint cov typing\n\n\n# Run development server\n[group('run')]\nserve:\n    uv run {{ ARGS_SERVE }} -m fastapi dev src/hello_svc/asgi.py --port {{ PORT }}\n\n# Send HTTP request to development server\n[group('run')]\nreq path=\"\" *args:\n    @just _http {{ args }} http://127.0.0.1:{{ PORT }}/{{ path }}\n\n_http *args:\n    uvx --from httpie http {{ args }}\n\n# Open development server in web browser\n[group('run')]\nbrowser:\n    uv run -m webbrowser -t http://127.0.0.1:{{ PORT }}\n\n\n# Update dependencies\n[group('lifecycle')]\nupdate:\n    uv sync --upgrade\n\n# Ensure project virtualenv is up to date\n[group('lifecycle')]\ninstall:\n    uv sync\n\n# Remove temporary files\n[group('lifecycle')]\nclean:\n    rm -rf .venv .pytest_cache .mypy_cache .ruff_cache .coverage htmlcov\n    find . -type d -name \"__pycache__\" -exec rm -r {} +\n\n# Recreate project virtualenv from nothing\n[group('lifecycle')]\nfresh: clean install\nref"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to our Class Notes for our Special Topics in Python and R Tooling",
+    "section": "",
+    "text": "Notes and links for our special topics class. If you would like to see more well developed courses for BYU-I’s program you can explore byuidatascience.github.io/\n\n\n\nVS Code Setup for R"
+  },
+  {
+    "objectID": "index.html#course-information",
+    "href": "index.html#course-information",
+    "title": "Welcome to our Class Notes for our Special Topics in Python and R Tooling",
+    "section": "",
+    "text": "VS Code Setup for R"
+  },
+  {
+    "objectID": "slides/1_introduction_to_R_packages.html#todays-agenda",
+    "href": "slides/1_introduction_to_R_packages.html#todays-agenda",
+    "title": "1. Intro R & Packages",
+    "section": "Today’s agenda",
+    "text": "Today’s agenda\n\nIntroduction to R packages\nBuilding our first R package",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "1. Intro R & Packages"
+    ]
+  },
+  {
+    "objectID": "slides/1_introduction_to_R_packages.html#this-weeks-plan",
+    "href": "slides/1_introduction_to_R_packages.html#this-weeks-plan",
+    "title": "1. Intro R & Packages",
+    "section": "This week’s plan",
+    "text": "This week’s plan\n\nTuesday: Introduction to R packages and VSCode Setup (Today)\nThursday: More on R packages (Thursday)",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "1. Intro R & Packages"
+    ]
+  },
+  {
+    "objectID": "slides/1_introduction_to_R_packages.html#setting-up-r-and-vs-code-for-r-package-development",
+    "href": "slides/1_introduction_to_R_packages.html#setting-up-r-and-vs-code-for-r-package-development",
+    "title": "1. Intro R & Packages",
+    "section": "Setting up R and VS Code for R Package Development",
+    "text": "Setting up R and VS Code for R Package Development\n\nVS Code Installation: https://code.visualstudio.com/\nVS Code R Extension: https://marketplace.visualstudio.com/items?itemName=Ikuyadeu.r\nWindows Users: Install Rtools: https://cran.r-project.org/bin/windows/Rtools/\nInstall Radian for an improved R console experience:\nInstall R Package Dependencies:\ninstall.packages(c(\"devtools\", \"usethis\", \"roxygen2\", \"testthat\", \"pkgdown\", \"languageserver\", \"httpgd\"))",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "1. Intro R & Packages"
+    ]
+  },
+  {
+    "objectID": "slides/1_introduction_to_R_packages.html#some-great-quotes-from-our-resources",
+    "href": "slides/1_introduction_to_R_packages.html#some-great-quotes-from-our-resources",
+    "title": "1. Intro R & Packages",
+    "section": "Some great quotes from our resources",
+    "text": "Some great quotes from our resources\n\nPut simply, packages are how you make it as easy as possible to use, maintain, share, and collaborate on Python code with others, whether they be your friends, work colleagues, the world, or your future self! [Packages] save you time. Even if you don’t intend to share your package with others, they help you easily reuse and maintain your code across multiple projects.",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "1. Intro R & Packages"
+    ]
+  },
+  {
+    "objectID": "slides/1_introduction_to_R_packages.html#building-or-first-r-package",
+    "href": "slides/1_introduction_to_R_packages.html#building-or-first-r-package",
+    "title": "1. Intro R & Packages",
+    "section": "Building or first R package",
+    "text": "Building or first R package\n\nLet’s review the usethis package\n\nWhat is the purpose of the usethis package?\nHow do they hold true to their purpose based on the functions in the package?\n\nBuilding a data package thoughts\nExploring the base files and Folders\n\n## Class Assignments\n\nMake sure your environment is setup and that you can publish to GitHub pages\nRead through The Getting started section (Chapters 1-5)\nCreate your own package repository for your personal R package.",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "1. Intro R & Packages"
+    ]
+  },
+  {
+    "objectID": "slides/3_introduction_to_Python_packages.html#this-weeks-plan",
+    "href": "slides/3_introduction_to_Python_packages.html#this-weeks-plan",
+    "title": "3. Introduction Python Development and Packages",
+    "section": "This week’s plan",
+    "text": "This week’s plan\n\nTuesday: Introduction to Python Tooling (Today)\nThursday: Introduction to Python packages (Thursday)",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "3. Introduction Python Development and Packages"
+    ]
+  },
+  {
+    "objectID": "slides/3_introduction_to_Python_packages.html#todays-agenda",
+    "href": "slides/3_introduction_to_Python_packages.html#todays-agenda",
+    "title": "3. Introduction Python Development and Packages",
+    "section": "Today’s agenda",
+    "text": "Today’s agenda\n\nDiscuss reading assignments and class assignments at the end of class\nGetting our Python Paradigm straight\nIntroduction to uv, virtual environments, and VS Code setup\nIntroduction to Python packages",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "3. Introduction Python Development and Packages"
+    ]
+  },
+  {
+    "objectID": "slides/3_introduction_to_Python_packages.html#building-or-first-python-package",
+    "href": "slides/3_introduction_to_Python_packages.html#building-or-first-python-package",
+    "title": "3. Introduction Python Development and Packages",
+    "section": "Building or first Python package",
+    "text": "Building or first Python package\n\nLet’s review the usethis package\n\nWhat is the purpose of the usethis package?\nHow do they hold true to their purpose based on the functions in the package?\n\nBuilding a data package thoughts\nExploring the base files and Folders",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "3. Introduction Python Development and Packages"
+    ]
+  },
+  {
+    "objectID": "slides/3_introduction_to_Python_packages.html#introduction-to-our-course-python-and-r-package",
+    "href": "slides/3_introduction_to_Python_packages.html#introduction-to-our-course-python-and-r-package",
+    "title": "3. Introduction Python Development and Packages",
+    "section": "Introduction to our course Python and R package",
+    "text": "Introduction to our course Python and R package\n\nDS 250 Gun Deaths Assignment\nUS Deaths\nPrivate Github File Hathaway Built",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "3. Introduction Python Development and Packages"
+    ]
+  },
+  {
+    "objectID": "slides/3_introduction_to_Python_packages.html#class-assignments",
+    "href": "slides/3_introduction_to_Python_packages.html#class-assignments",
+    "title": "3. Introduction Python Development and Packages",
+    "section": "Class Assignments",
+    "text": "Class Assignments\n\nMake sure your environment is setup and that you can publish to GitHub pages\nRead through The Getting started section (Chapters 1-5)\nCreate your own package repository for your personal R package.",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "3. Introduction Python Development and Packages"
+    ]
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -12,47 +455,5 @@
     "title": "About",
     "section": "",
     "text": "This site contains notes and links for our special topics class."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "toolingbook",
-    "section": "",
-    "text": "Welcome to toolingbook\nNotes and links for our special topics class.\nThis is a Quarto website. To learn more about Quarto websites visit https://quarto.org/docs/websites."
-  },
-  {
-    "objectID": "slides/introduction_w1.html#introduction-to-j.-hathaway",
-    "href": "slides/introduction_w1.html#introduction-to-j.-hathaway",
-    "title": "DS 495 Special Topics: Data Science Tooling (Building Packages)",
-    "section": "Introduction to J. Hathaway",
-    "text": "Introduction to J. Hathaway\n\nHistory before BYU-I (My work at PNNL)\nHistory at BYU-I (Data Science!)\nFamily introduction\nHobbies (Board Games and Theology)"
-  },
-  {
-    "objectID": "slides/introduction_w1.html#introduction-to-the-course",
-    "href": "slides/introduction_w1.html#introduction-to-the-course",
-    "title": "DS 495 Special Topics: Data Science Tooling (Building Packages)",
-    "section": "Introduction to the Course",
-    "text": "Introduction to the Course\nLet’s make this what we want!\n\nProposed projects\nProposed grading\nDiscussion about special topics classes"
-  },
-  {
-    "objectID": "slides/introduction_w1.html#activity-1",
-    "href": "slides/introduction_w1.html#activity-1",
-    "title": "DS 495 Special Topics: Data Science Tooling (Building Packages)",
-    "section": "Activity 1",
-    "text": "Activity 1\nGet into teams of 3 and work on the following definitions\n\nWhat is data analytics?\nWhat is data science?\nWhat is data science tooling?"
-  },
-  {
-    "objectID": "slides/introduction_w1.html#activity-2",
-    "href": "slides/introduction_w1.html#activity-2",
-    "title": "DS 495 Special Topics: Data Science Tooling (Building Packages)",
-    "section": "Activity 2",
-    "text": "Activity 2\nWhat are Python and R packages?\n\nExplore Plotnine and their Github Repository to see how Python packages are structured\nExplore ggplot2 and their Github Repository to see how R packages are structured\n\nQuestions\n\nWhere are the functions located in the package?\nWhere is the documentation?\nHow are their websites built?"
-  },
-  {
-    "objectID": "slides/introduction_w1.html#discussion-1",
-    "href": "slides/introduction_w1.html#discussion-1",
-    "title": "DS 495 Special Topics: Data Science Tooling (Building Packages)",
-    "section": "Discussion 1",
-    "text": "Discussion 1\nWhat packages dow we think will be fun to build?"
   }
 ]

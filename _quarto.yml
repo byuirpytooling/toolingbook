@@ -3,15 +3,34 @@ project:
   output-dir: docs
 
 website:
-  title: "toolingbook"
+  title: "Data Science Tooling Book"
   navbar:
     left:
       - href: index.qmd
         text: Home
       - about.qmd
+  sidebar:
+    style: 'docked'
+    search: true
+    contents:
+      - section: "Class Slides"
+        href: slides/class_slides.qmd
+        contents: 
+          - slides/0_introduction_course.qmd
+          - slides/1_introduction_to_R_packages.qmd
+          - slides/2_more_on_R_packages.qmd
+          - slides/3_introduction_to_Python_packages.qmd
+          - slides/4_more_on_Python_packages.qmd
+          - slides/5_building_our_class_packages.qmd
+
 
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
+    grid:
+      sidebar-width: 500px
+      body-width: 900px
+      margin-width: 250px
+      gutter-width: 1.5em
