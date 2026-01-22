@@ -430,7 +430,7 @@
     "href": "slides/3_introduction_to_Python_packages.html#this-weeks-plan",
     "title": "3. Introduction Python Development and Packages",
     "section": "This week’s plan",
-    "text": "This week’s plan\n\nTuesday: Introduction to Python Tooling (Today)\nThursday: Introduction to Python packages (Thursday)",
+    "text": "This week’s plan\n\nTuesday: Planning our Package ideas.\nThursday: Introduction to Python Tooling (Today)\nTuesday: Introduction to Python packages (Thursday)",
     "crumbs": [
       "Home",
       "Class Slides",
@@ -450,11 +450,11 @@
     ]
   },
   {
-    "objectID": "slides/3_introduction_to_Python_packages.html#building-or-first-python-package",
-    "href": "slides/3_introduction_to_Python_packages.html#building-or-first-python-package",
+    "objectID": "slides/3_introduction_to_Python_packages.html#explore-tooling-in-python",
+    "href": "slides/3_introduction_to_Python_packages.html#explore-tooling-in-python",
     "title": "3. Introduction Python Development and Packages",
-    "section": "Building or first Python package",
-    "text": "Building or first Python package\n\nLet’s review the usethis package\n\nWhat is the purpose of the usethis package?\nHow do they hold true to their purpose based on the functions in the package?\n\nBuilding a data package thoughts\nExploring the base files and Folders",
+    "section": "Explore Tooling in Python",
+    "text": "Explore Tooling in Python\n\nWhat is uv and why should we use it?\nWhat are python packages/projects and why should we use them?\nHow do we create a python package/project?\nWhat is different from the R experience?",
     "crumbs": [
       "Home",
       "Class Slides",
@@ -462,11 +462,23 @@
     ]
   },
   {
-    "objectID": "slides/3_introduction_to_Python_packages.html#introduction-to-our-course-python-and-r-package",
-    "href": "slides/3_introduction_to_Python_packages.html#introduction-to-our-course-python-and-r-package",
+    "objectID": "slides/3_introduction_to_Python_packages.html#exploring-uv",
+    "href": "slides/3_introduction_to_Python_packages.html#exploring-uv",
     "title": "3. Introduction Python Development and Packages",
-    "section": "Introduction to our course Python and R package",
-    "text": "Introduction to our course Python and R package\n\nDS 250 Gun Deaths Assignment\nUS Deaths\nPrivate Github File Hathaway Built",
+    "section": "Exploring uv",
+    "text": "Exploring uv\n\nuv installation guide",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "3. Introduction Python Development and Packages"
+    ]
+  },
+  {
+    "objectID": "slides/3_introduction_to_Python_packages.html#building-or-first-python-package",
+    "href": "slides/3_introduction_to_Python_packages.html#building-or-first-python-package",
+    "title": "3. Introduction Python Development and Packages",
+    "section": "Building or first Python package",
+    "text": "Building or first Python package\nExplore our template repo\n\nWhere are the python functions for the package?\nWhere is the documentation?\nLet’s see if we can build our python simplemaths functions.\nWhat do we need to change for this package to work?",
     "crumbs": [
       "Home",
       "Class Slides",
@@ -478,7 +490,7 @@
     "href": "slides/3_introduction_to_Python_packages.html#class-assignments",
     "title": "3. Introduction Python Development and Packages",
     "section": "Class Assignments",
-    "text": "Class Assignments\n\nMake sure your environment is setup and that you can publish to GitHub pages\nRead through The Getting started section (Chapters 1-5)\nCreate your own package repository for your personal R package.",
+    "text": "Class Assignments\n\nMake sure your environment is setup and that you can publish to GitHub pages\nRead through The Python Package book\n\n\nNote: We are using uv instead of poetry.\nNote: We are using mkdocs-meterial for documentation instead.\n\n\nCreate your own package repository for your personal Python package.",
     "crumbs": [
       "Home",
       "Class Slides",
