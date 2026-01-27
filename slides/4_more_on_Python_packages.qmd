@@ -11,19 +11,44 @@ format: revealjs
 
 ## This week's plan
 
-- Tuesday: Introduction to R packages and VSCode Setup (Today)
-- Thursday: More on R packages (Thursday)
+- Tuesday: Planning our Package ideas.
+- Thursday: Introduction to Python Tooling (Today)
+- Tuesday: Introduction to Python packages (Thursday)
 
-## Introduction to our course r package
+## Building or first Python package
 
+- Can we delete the old repos from the second day of class?
+- Let's continue to push our simplemaths package further.
+
+
+## Introduction to our course Python package
+
+- Let's explore our class [usdeathspy package](https://github.com/byuirpytooling/usdeathspy)
+- Now let's get the details out correctly.
 - [DS 250 Gun Deaths Assignment](https://byuistats.github.io/M335/weekly_projects/cs04_details.html)
 - [US Deaths](https://www.cdc.gov/nchs/data_access/VitalStatsOnline.htm#Mortality_Multiple)
-- [Private Github File Hathaway Built](https://github.com/KSUDS/p2_hathaway/blob/main/_functions.R)
+- [Private Github File Hathaway Built](https://github.com/KSUDS/p2_hathaway/blob/main/p2_import.py)
 
-## 
+## Going beyond the fundamentals
 
- ## Class Assignments
+- Team assignments to build traing for the class (and me!) on:
+  - Testing in [Python](https://py-pkgs.org/05-testing) and [R](https://r-pkgs.org/testing-basics.html) packages
+  - Continuous Integration (CI) for [Python](https://py-pkgs.org/08-ci-cd.html) and [R](https://r-pkgs.org/software-development-practices.html#sec-sw-dev-practices-ci) packages
+  - Advanced Documentation in R and Python frameworks we are using
 
- 1. Make sure your environment is setup and that you can publish to GitHub pages
- 2. Read through The [Getting started section (Chapters 1-5)](https://r-pkgs.org/)
- 3. Create your own package repository for your personal R package.
+## Training Details
+
+- Each team will build a training module for the class
+- Each team will present their training to the class
+- Each team will write up a summary of their training in a slide deck using revealjs
+
+### Needs
+
+1. Make sure the material in the books is the best path. Check the web for other guidance.
+2. Easier options are prefered over more complex ones.
+3. Make sure to include code examples.
+4. Make sure to include references to further reading.
+5. Get us through an example using our simplemaths package.
+
+
+

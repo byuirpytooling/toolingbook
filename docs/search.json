@@ -215,7 +215,7 @@
     "href": "slides/4_more_on_Python_packages.html#this-weeks-plan",
     "title": "4. More on Python & Building Packages",
     "section": "This week’s plan",
-    "text": "This week’s plan\n\nTuesday: Introduction to R packages and VSCode Setup (Today)\nThursday: More on R packages (Thursday)",
+    "text": "This week’s plan\n\nTuesday: Planning our Package ideas.\nThursday: Introduction to Python Tooling (Today)\nTuesday: Introduction to Python packages (Thursday)",
     "crumbs": [
       "Home",
       "Class Slides",
@@ -223,11 +223,11 @@
     ]
   },
   {
-    "objectID": "slides/4_more_on_Python_packages.html#introduction-to-our-course-r-package",
-    "href": "slides/4_more_on_Python_packages.html#introduction-to-our-course-r-package",
+    "objectID": "slides/4_more_on_Python_packages.html#building-or-first-python-package",
+    "href": "slides/4_more_on_Python_packages.html#building-or-first-python-package",
     "title": "4. More on Python & Building Packages",
-    "section": "Introduction to our course r package",
-    "text": "Introduction to our course r package\n\nDS 250 Gun Deaths Assignment\nUS Deaths\nPrivate Github File Hathaway Built",
+    "section": "Building or first Python package",
+    "text": "Building or first Python package\n\nCan we delete the old repos from the second day of class?\nLet’s continue to push our simplemaths package further.",
     "crumbs": [
       "Home",
       "Class Slides",
@@ -235,11 +235,35 @@
     ]
   },
   {
-    "objectID": "slides/4_more_on_Python_packages.html#section",
-    "href": "slides/4_more_on_Python_packages.html#section",
+    "objectID": "slides/4_more_on_Python_packages.html#introduction-to-our-course-python-package",
+    "href": "slides/4_more_on_Python_packages.html#introduction-to-our-course-python-package",
     "title": "4. More on Python & Building Packages",
-    "section": "",
-    "text": "## Class Assignments\n\nMake sure your environment is setup and that you can publish to GitHub pages\nRead through The Getting started section (Chapters 1-5)\nCreate your own package repository for your personal R package.",
+    "section": "Introduction to our course Python package",
+    "text": "Introduction to our course Python package\n\nLet’s explore our class usdeathspy package\nNow let’s get the details out correctly.\nDS 250 Gun Deaths Assignment\nUS Deaths\nPrivate Github File Hathaway Built",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "4. More on Python & Building Packages"
+    ]
+  },
+  {
+    "objectID": "slides/4_more_on_Python_packages.html#going-beyond-the-fundamentals",
+    "href": "slides/4_more_on_Python_packages.html#going-beyond-the-fundamentals",
+    "title": "4. More on Python & Building Packages",
+    "section": "Going beyond the fundamentals",
+    "text": "Going beyond the fundamentals\n\nTeam assignments to build traing for the class (and me!) on:\n\nTesting in Python and R packages\nContinuous Integration (CI) for Python and R packages\nAdvanced Documentation in R and Python frameworks we are using",
+    "crumbs": [
+      "Home",
+      "Class Slides",
+      "4. More on Python & Building Packages"
+    ]
+  },
+  {
+    "objectID": "slides/4_more_on_Python_packages.html#training-details",
+    "href": "slides/4_more_on_Python_packages.html#training-details",
+    "title": "4. More on Python & Building Packages",
+    "section": "Training Details",
+    "text": "Training Details\n\nEach team will build a training module for the class\nEach team will present their training to the class\nEach team will write up a summary of their training in a slide deck using revealjs\n\nNeeds\n\nMake sure the material in the books is the best path. Check the web for other guidance.\nEasier options are prefered over more complex ones.\nMake sure to include code examples.\nMake sure to include references to further reading.\nGet us through an example using our simplemaths package.",
     "crumbs": [
       "Home",
       "Class Slides",
