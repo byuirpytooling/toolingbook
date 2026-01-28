@@ -45,10 +45,9 @@ format: revealjs
 __Needs__
 
 1. Make sure the material in the books is the best path. Check the web for other guidance.
-2. Easier options are prefered over more complex ones.
+2. Easier options are preferred over more complex ones.
 3. Make sure to include code examples.
 4. Make sure to include references to further reading.
 5. Get us through an example using our simplemaths package.
-
 
 
